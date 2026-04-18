@@ -1,0 +1,327 @@
+Iterator Interface
+-------------------
+-> It is used to retrive elements one by one.
+-> It works only in forward direction.
+-> Replacement and addition of new elements is not supported by Iterator.
+Methods:
+
+boolean hasNext()
+Object next()
+
+Example:
+import java.util.*;
+
+public class Test {
+	public static void main(String[] args)
+	{ 
+		ArrayList<String> a1 = new ArrayList<>();
+		a1.add("A");
+		a1.add("B");
+		a1.add("C");
+		a1.add(1,"D");
+		a1.add("B");
+		a1.add("B");
+		System.out.println(a1);
+		
+		Iterator itr = a1.iterator();
+		// ABCDE
+		while(itr.hasNext()) 
+		{
+			System.out.println(itr.next());
+		}
+		//
+	}		
+}
+-------------------------------------------------------
+LinkedList class
+----------------
+-> It provides a linked-list data structure.
+-> It uses a doubly linked list to store the elements.
+-> It can contains duplicate elements.
+-> It maintains insertion order.
+methods:
+boolean add(element)
+void add(int index,element)
+void addAll()
+void addFirst()
+void addLast()
+
+void clear()
+Object clone()
+boolean contains()
+
+E get(int index)
+E getFirst()
+E getLast() 
+
+int indexOf()
+int lastIndexOf()
+int size()
+
+
+Example:
+import java.util.*;
+
+public class Test {
+	public static void main(String[] args)
+	{ 
+		LinkedList<String> a1 = new LinkedList<>();
+		a1.add("A");
+		a1.add("B");
+		a1.add("C");
+		a1.add(1,"D");
+		a1.add("B");
+		a1.add("B");
+		a1.addLast("Y");
+		a1.addFirst("Z");
+		
+		a1.add("X");
+		System.out.println(a1);
+		a1.add("X");
+		System.out.println(a1);
+		System.out.println(a1.indexOf("C"));
+		System.out.println(a1.lastIndexOf("B"));
+		
+		System.out.println(a1.get(1));
+		System.out.println(a1.getFirst());
+		System.out.println(a1.getLast());
+	}		
+}
+----------------------------------------------
+ListIterator Interface
+---------------------
+-> LI inteface used to traverse elements in forward as well as backward direction.
+
+methods:
+hasNext()
+next()
+hasPrevious()
+previous()
+
+Example:
+import java.util.*;
+
+public class Test {
+	public static void main(String[] args)
+	{ 
+		LinkedList<String> a1 = new LinkedList<>();
+		a1.add("A");
+		a1.add("B");
+		a1.add("C");
+		a1.add(1,"D");
+		a1.add("B");
+		a1.add("B");
+		a1.addLast("Y");
+		a1.addFirst("Z");		
+		
+		ListIterator itr = a1.listIterator();
+		
+		// ABCDE
+		while(itr.hasPrevious()) 
+		{
+			System.out.println(itr.previous());
+		}		
+	}		
+}
+------------------------------------------------------------------
+HW-> Vector class , Queue and Dequeue
+-----------------------------------------------
+Set Interface
+-------------
+-> It is an unordered collection of unique elements.
+-> It doesn;t allow duplicate elements.
+-> If you add duplicates, it will replace the existing one.
+-> There are two implimentation classes:
+	1. HashSet class
+			-> It uses Hash Table.
+	2. TreeSet class
+			-> It Uses Binary Tree.
+			
+-------------------------------
+HashSet class
+----------------
+-> It uses Hash Table.
+Methods:
+boolean add()
+void clear()
+Object clone()
+boolean contains()
+boolean isEmpty()
+boolean remove(Object)
+int size()
+
+Example:1
+1.  Develop a java class with a instance variable Country  HashSet (H1)  add a method saveCountryNames(String CountryName) , the method should add the passed country to a HashSet (H1) and return the added HashSet(H1).
+Develop a method getCountry(String CountryName) which iterates through the HashSet and returns the country if exist else return null. 
+NOTE: You can test the methods using a main method.
+		
+import java.util.*;
+
+class Country
+{
+	HashSet<String> hs = new HashSet<>();
+	
+	public HashSet<String> saveCountryNames(String CountryName)
+	{
+		hs.add(CountryName);
+		return hs;
+	}
+	
+	String getCountry(String CountryName)
+	{
+		Iterator itr = hs.iterator();
+		while(itr.hasNext())
+		{
+			if(itr.next().equals(CountryName))
+			{
+				return CountryName;
+			}
+		}
+		return null;
+	}
+}
+
+public class Test {
+	public static void main(String[] args)
+	{ 
+		Country c = new Country();
+		c.saveCountryNames("India");
+		c.saveCountryNames("USA");
+		c.saveCountryNames("UK");
+		c.saveCountryNames("Sri Lanka");
+		
+		System.out.println(c.getCountry("India")); 
+		System.out.println(c.getCountry("AUS")); 
+		
+		
+	}		
+}
+
+2. Write a program to store a group of employee names into a HashSet, retrieve the elements one by one using an Iterator.
+
+
+
+
+TreeSet class
+Example:
+import java.util.*;
+
+public class Test {
+	public static void main(String[] args)
+	{ 
+		TreeSet<String> a1 = new TreeSet<>();
+		a1.add("Ajay");
+		a1.add("Vijay");
+		a1.add("Vimal");
+		a1.add("Kishore");
+		a1.add("Kumar");
+		
+		System.out.println(a1.pollFirst());
+		System.out.println(a1.pollLast());
+		
+		/*
+		Iterator itr = a1.descendingIterator();
+		while(itr.hasNext())
+		{
+			System.out.println(itr.next());
+		}
+		*/
+		
+	}		
+}
+Example:2
+import java.util.*;
+
+public class Test {
+	public static void main(String[] args)
+	{ 
+		TreeSet<String> a1 = new TreeSet<>();
+		a1.add("Ajay");
+		a1.add("Vijay");
+		a1.add("Vimal");
+		a1.add("Kishore");
+		a1.add("Kumar");
+		
+		System.out.println(a1);
+		System.out.println(a1.descendingSet());	
+	}		
+}
+
+Assignment3:
+Create Collection called TreeSet which is capable of storing String objects. The Collection should have the following capabilities
+a)Reverse the elements of the Collection 
+b)Iterate the elements of the TreeSet 
+c) Checked if a particular element exists or not
+
+import java.util.*;
+
+public class Test {
+	public static void main(String[] args)
+	{ 
+		TreeSet<String> a1 = new TreeSet<>();
+		a1.add("Ajay");
+		a1.add("Vijay");
+		a1.add("Vimal");
+		a1.add("Kishore");
+		a1.add("Kumar");
+		
+		System.out.println(a1.descendingSet());
+	
+		Iterator itr = a1.iterator();
+		
+		boolean res = false;
+		
+		while(itr.hasNext())
+		{
+			if(itr.next().equals("vimal"))
+			{
+				res = true;
+				break;
+			}
+		}
+		if(res)
+			System.out.println("Exist");
+		else
+			System.out.println("Not Exist");
+	}		
+}
+
+JavaIO Assignment=3
+import java.util.*;
+import java.io.*;
+public class Test1 {
+	public static void main(String[] args) throws IOException
+	{ 
+		BufferedReader br = new BufferedReader(new FileReader("inputFile.txt"));
+		BufferedWriter bw = new BufferedWriter(new FileWriter("outputFile.txt"));
+		
+		String s = br.readLine();
+		Map<String, Integer> map = new TreeMap<>();
+		while(s!=null)
+		{
+			s=s.trim();
+			String[] word = s.split(" ");
+			for(String w: word)
+			{
+				if(!map.containsKey(w))
+				{
+					map.put(w,1);
+				}
+				else
+				{
+					map.put(w,map.get(w)+1);
+				}
+			}
+			
+			s = br.readLine();
+		}
+		System.out.println(map);
+		
+		
+		for(Map.Entry m:map.entrySet())
+		{  
+		  bw.write(m.getKey() + " : " + m.getValue() + "\n");
+		}
+		bw.flush();
+	}		
+}

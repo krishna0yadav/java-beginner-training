@@ -1,0 +1,353 @@
+============================27-July-2020========================================
+Regular Expression
+--------------------
+-> It is also called Regex.
+-> It is used to perform pattern matching
+
+---------------
+Extra:
+	refrence website: w3school
+---------------
+
+pattern syntax:
+			/pattern/
+
+Example:
+	
+<html>
+<head>
+	<script>
+		function show()
+		{
+			var a = document.getElementById('user').value;
+			var pattern=/hello/;
+			if(a.match(pattern))
+			{
+				document.getElementById('sp1').innerHTML = "Valid";
+			}
+			else
+			{
+				document.getElementById('sp1').innerHTML = "Invalid";
+			}
+		}
+	</script>
+</head>
+<body>
+<form>
+	<input type="text" id="user" />
+	<input type="button" value="show" onclick="show()"/>
+</form>
+	<span id="sp1"></span>
+</body>
+</html>
+
+
+---------------------------------------------
+^	:	pattern start with ^ to match string at begining
+Example:
+<script>
+		function show()
+		{
+			var a = document.getElementById('user').value;
+			var pattern=/^hello/;
+			if(a.match(pattern))
+			{
+				document.getElementById('sp1').innerHTML = "Valid";
+			}
+			else
+			{
+				document.getElementById('sp1').innerHTML = "Invalid";
+			}
+		}
+	</script>
+------------------------------------
+$	: If you want to match string that end with 'hello'
+Example:
+<script>
+		function show()
+		{
+			var a = document.getElementById('user').value;
+			var pattern=/hello$/;
+			if(a.match(pattern))
+			{
+				document.getElementById('sp1').innerHTML = "Valid";
+			}
+			else
+			{
+				document.getElementById('sp1').innerHTML = "Invalid";
+			}
+		}
+	</script>
+----------------------------------
+^ $ : Exact Match
+Example:
+<script>
+		function show()
+		{
+			var a = document.getElementById('user').value;
+			var pattern=/^hello$/;
+			if(a.match(pattern))
+			{
+				document.getElementById('sp1').innerHTML = "Valid";
+			}
+			else
+			{
+				document.getElementById('sp1').innerHTML = "Invalid";
+			}
+		}
+	</script>
+-------------------------------------
+Match Items in Range
+-----------------------
+[a-z]
+[A-Z]
+[0-9]
+[A-C]
+
+Example:
+<script>
+		function show()
+		{
+			var a = document.getElementById('user').value;
+			var pattern=/[A-Z]/;
+			if(a.match(pattern))
+			{
+				document.getElementById('sp1').innerHTML = "Valid";
+			}
+			else
+			{
+				document.getElementById('sp1').innerHTML = "Invalid";
+			}
+		}
+	</script>
+
+-------------------------
+Combine Range:
+Example:
+<script>
+		function show()
+		{
+			var a = document.getElementById('user').value;
+			var pattern=/[A-Z0-9a-z]/;
+			if(a.match(pattern))
+			{
+				document.getElementById('sp1').innerHTML = "Valid";
+			}
+			else
+			{
+				document.getElementById('sp1').innerHTML = "Invalid";
+			}
+		}
+	</script>
+
+-----------------------------
+Negating Pattern  : ^
+----------------
+A '^' character at the begining of a range.
+<script>
+		function show()
+		{
+			var a = document.getElementById('user').value;
+			var pattern=/[^A-Z0-9a-z]/;
+			if(a.match(pattern))
+			{
+				document.getElementById('sp1').innerHTML = "Valid";
+			}
+			else
+			{
+				document.getElementById('sp1').innerHTML = "Invalid";
+			}
+		}
+	</script>
+-------S---------------------------------
+Meta characters
+----------------
+\d	: matches any digit, equivalent to [0-9]
+\D 	: matches any character that's not a digit , ET  [^0-9]
+\w  : matches any aplhanummeric character , [A-Za-z0-9_]
+\W  : matches any non alpanumeric charactes, [^A-Za-z0-9_]
+
+--------------------------
+or operator
+Example:
+<script>
+		function show()
+		{
+			var a = document.getElementById('user').value;
+			var pattern=/hello|hi/;
+			if(a.match(pattern))
+			{
+				document.getElementById('sp1').innerHTML = "Valid";
+			}
+			else
+			{
+				document.getElementById('sp1').innerHTML = "Invalid";
+			}
+		}
+	</script>
+	
+quantifiers
+-----------
++	: match one or more items
+*   : match zero ore more items
+{n} : match exactly n items
+{n,m}: match between n and m items.
+?    : to make item optional, zero or one
+
+Example:
+<script>
+		function show()
+		{
+			var a = document.getElementById('user').value;
+			var pattern=/^\d+$/;
+			if(a.match(pattern))
+			{
+				document.getElementById('sp1').innerHTML = "Valid";
+			}
+			else
+			{
+				document.getElementById('sp1').innerHTML = "Invalid";
+			}
+		}
+	</script>
+Example:
+<script>
+		function show()
+		{
+			var a = document.getElementById('user').value;
+			var pattern=/^\d*$/;
+			if(a.match(pattern))
+			{
+				document.getElementById('sp1').innerHTML = "Valid";
+			}
+			else
+			{
+				document.getElementById('sp1').innerHTML = "Invalid";
+			}
+		}
+	</script>
+
+Example:
+<script>
+		function show()
+		{
+			var a = document.getElementById('user').value;
+			var pattern=/^\d{3}$/;
+			if(a.match(pattern))
+			{
+				document.getElementById('sp1').innerHTML = "Valid";
+			}
+			else
+			{
+				document.getElementById('sp1').innerHTML = "Invalid";
+			}
+		}
+	</script>
+
+Example:
+<script>
+		function show()
+		{
+			var a = document.getElementById('user').value;
+			var pattern=/^\w{3}$/;
+			if(a.match(pattern))
+			{
+				document.getElementById('sp1').innerHTML = "Valid";
+			}
+			else
+			{
+				document.getElementById('sp1').innerHTML = "Invalid";
+			}
+		}
+	</script>
+
+Example:
+<script>
+		function show()
+		{
+			var a = document.getElementById('user').value;
+			var pattern=/^\d{3,5}$/;
+			if(a.match(pattern))
+			{
+				document.getElementById('sp1').innerHTML = "Valid";
+			}
+			else
+			{
+				document.getElementById('sp1').innerHTML = "Invalid";
+			}
+		}
+	</script>
+
+Example: can be omitted to have an open ending at least n items.
+<script>
+		function show()
+		{
+			var a = document.getElementById('user').value;
+			var pattern=/^\d{3,}$/;
+			if(a.match(pattern))
+			{
+				document.getElementById('sp1').innerHTML = "Valid";
+			}
+			else
+			{
+				document.getElementById('sp1').innerHTML = "Invalid";
+			}
+		}
+	</script>
+
+Example: using ? quantifier
+<script>
+		function show()
+		{
+			var a = document.getElementById('user').value;
+			var pattern=/^\d{3}\w?$/;   // 157
+			if(a.match(pattern))
+			{
+				document.getElementById('sp1').innerHTML = "Valid";
+			}
+			else
+			{
+				document.getElementById('sp1').innerHTML = "Invalid";
+			}
+		}
+	</script>
+
+Groups:
+	use () 
+Example:
+	<script>
+		function show()
+		{
+			var a = document.getElementById('user').value;
+			var pattern=/(^\d{3})(\w+)$/;
+			if(a.match(pattern))
+			{
+				document.getElementById('sp1').innerHTML = "Valid";
+			}
+			else
+			{
+				document.getElementById('sp1').innerHTML = "Invalid";
+			}
+		}
+	</script>
+
+Example: () +
+
+<script>
+		function show()
+		{
+			var a = document.getElementById('user').value;
+			var pattern=/^(\d{3})+$/;
+			if(a.match(pattern))
+			{
+				document.getElementById('sp1').innerHTML = "Valid";
+			}
+			else
+			{
+				document.getElementById('sp1').innerHTML = "Invalid";
+			}
+		}
+	</script>
+
+
+====================

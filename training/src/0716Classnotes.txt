@@ -1,0 +1,267 @@
+---------------------------------------------------------------------------
+Shoping 
+--------
+1. Store Operation
+2. Buy 
+0. exit
+Enter Yout Choice: 1
+
+store Operation (DB)
+---------------
+1. Add Items
+		id   name   qty    price
+		101  pen     3       10
+2. Update Items
+		update deltails of items basis of item id
+3. Delete Items
+		by id
+4. Show Items
+5. Go to shoping menu
+0. exit
+
+Buy
+---
+-----------------------------
+show item list
+101   pen     10
+102   pencil   5
+103
+
+-------------------------------
+Enter item id: 101
+Enter qty:15
+
+101 pen: qty having 3 please reenter qty: 
+
+enter another item to cart press 1 for continue or press 0 for exit.: 1
+Enter item id: 102
+Enter qty: 10
+
+Total
+101		pen     15
+102     pencil  3
+              ------
+                165
+=================================================
+package com.connection;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class DBConnectionmysql {
+
+	public static Connection takeConnection()
+	{
+		Connection con = null;
+		try
+		{
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopping","root","bhopal");
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		return con;
+		
+	}
+}
+---------------
+package com.database;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Types;
+import java.util.Scanner;
+
+import com.connection.DBConnectionmysql;
+import com.connection.DbConnection;
+
+public class Test {
+
+	
+	public static void insert()
+	{
+		try
+		{
+			Scanner sc = new Scanner(System.in);
+			System.out.print("Enter Item Name: ");
+			String name = sc.nextLine();
+			System.out.print("Enter Item Quantity: ");
+			int qty = sc.nextInt();
+			System.out.print("Enter Item Price: ");
+			int price = sc.nextInt();
+			Connection con = DBConnectionmysql.takeConnection();
+			String query = "Insert into item(name,qty,price) values(?,?,?)";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, name);
+			ps.setInt(2, qty);
+			ps.setInt(3, price);
+			
+			ps.executeUpdate();
+			System.out.print("Item Inserted");
+			con.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		menu();
+	}
+	
+	public static void show()
+	{
+		try
+		{
+			Connection con = DBConnectionmysql.takeConnection();
+			String query = "Select * from item";
+			PreparedStatement ps = con.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				System.out.print("Id= "+rs.getString(1)+"   "+"Name: "+rs.getString(2)+"     "+"Quantity= "+rs.getString(3)+"Price= "+rs.getString(4));
+			}
+			con.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		menu();
+	}
+	
+	public static void update()
+	{
+		try
+		{
+			Scanner sc = new Scanner(System.in);
+			System.out.print("Enter itm Id: ");
+			int id = sc.nextInt();
+			
+			System.out.println("What you want to Update: ");
+			System.out.println("\n1. name\n2. Quantity\n3.Price");
+			System.out.print("Enter Your Choice: ");
+			int choice = sc.nextInt();
+			sc.nextLine();
+			String query="";
+			Connection con = DBConnectionmysql.takeConnection();
+			if(choice==1)
+			{
+				query = "Update item set name=? where id=?";
+				System.out.print("Enter Name: ");
+				String name = sc.nextLine();
+				PreparedStatement ps = con.prepareStatement(query);
+				ps.setString(1, name);
+				ps.setInt(2, id);
+				ps.executeUpdate();
+			}
+			else if(choice==2)
+			{
+				query = "Update item set qty=? where id=?";
+				System.out.print("Enter Quantity: ");
+				int qty = sc.nextInt();
+				PreparedStatement ps = con.prepareStatement(query);
+				ps.setInt(1, qty);
+				ps.setInt(2, id);
+				ps.executeUpdate();
+			
+			}
+			else if(choice==3)
+			{
+				query = "Update item set price=? where id=?";
+				System.out.print("Enter Price: ");
+				int price = sc.nextInt();
+				PreparedStatement ps = con.prepareStatement(query);
+				ps.setInt(1, price);
+				ps.setInt(2, id);
+				ps.executeUpdate();
+			
+			}
+			else
+			{
+				System.out.println("Invalid choice !!!");
+				update();
+			}
+			
+			System.out.print("Item Updated");
+			con.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		menu();
+	}
+	
+	public static void delete()
+	{
+		
+	}
+	
+	public static void menu()
+	{
+		System.out.println("\n\n========Store Operation=========\n");
+		System.out.println("1. Insert/Add item: ");
+		System.out.println("2. Show item: ");
+		System.out.println("3. Update item: ");
+		Test.validate();
+	}
+	public static void validate()
+	{
+		Scanner sc = new Scanner(System.in);
+		while(true)
+		{
+			int choice = sc.nextInt();
+			switch(choice)
+			{
+			case 1:
+				insert();
+				break;
+			case 2:
+				show();
+				break;
+			case 3:
+				update();
+				break;
+			
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+
+		Test.menu();
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

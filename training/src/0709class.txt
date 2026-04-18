@@ -1,0 +1,45 @@
+=============================================================================
+JDBC
+-----
+-> Java Database Connectivity
+->it is a process which can be used to communicate java to database.
+-> It is a part of java.
+
+JDBC API:
+	It is predefined classes and interface which is used to communicate with database.
+	To use this api, it must to import java.sql package.
+	
+Drivers:
+	It is nothing but a translator, 
+	It is used to translate java call to database call.
+	Who is responsible to implement JDBC API.
+	Ans: Driver
+	
+	There are 4 types of JDBC Driver.
+	1. Type-1   -> JDBC-ODBC Bridge Driver  -> JDK-> Implemented by  Java
+	-> easy to use.
+	-> It is platform dependent
+	-> this driver support until jdk1.7.
+	
+	Diff b/w JDBC and ODBC
+	JDBC						ODBC
+	Java Database Connectivity  Open Database Connectivity
+	Sun Micro systems           Microsoft
+	PL: java					PL: any
+	platform: any               platform: microsoft
+	database: any               database: any
+	
+	
+	
+	2. Type-2   -> Native API Driver
+	
+	-> The vendor client library(NATIVE API) needs to installed on client machine.
+	
+	3. Type-3	-> Network Protocal Driver
+	-> Network support is required on  client machine.
+	-> mantinance of NPD becomes costly.
+	
+	4. Type-4	-> Universal or Thin or Pure Driver
+
+	-> it converts JDBC calls directly into the vendors specific database.
+	-> It is fully writtern in java language.

@@ -1,0 +1,525 @@
+===========================7-July-2020============================
+
+
+1. create table "Person"
+	col1: id
+	col2: name
+	col3: location
+	col4: age
+
+2. Insert data
+
+-----------------------------------
+WHERE CLAUSE
+
+SQL> select * from person;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       101 AAA                       Bhopal                            22
+       102 BBB                       Indore                            21
+       103 AAA                       Bhopal                            25
+       104 CCC                       Delhi                             21
+       105 DDD                       Bhopal                            22
+       106 AAA                       Indore                            25
+       107 DDD                       Delhi                             21
+
+7 rows selected.
+
+SQL> select * from person where id = 101;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       101 AAA                       Bhopal                            22
+
+SQL> select * from person where name = 'AAA';
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       101 AAA                       Bhopal                            22
+       103 AAA                       Bhopal                            25
+       106 AAA                       Indore                            25
+
+SQL> select * from person where age = 22;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       101 AAA                       Bhopal                            22
+       105 DDD                       Bhopal                            22
+
+SQL> select Name from person where age = 22;
+
+AND and OR
+-----------
+
+SQL> select * from person where name='AAA' and age=22 ;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       101 AAA                       Bhopal                            22
+
+SQL> select * from person where name='AAA' and age=30 ;
+
+no rows selected
+
+SQL> select * from person;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       101 AAA                       Bhopal                            22
+       102 BBB                       Indore                            21
+       103 AAA                       Bhopal                            25
+       104 CCC                       Delhi                             21
+       105 DDD                       Bhopal                            22
+       106 AAA                       Indore                            25
+       107 DDD                       Delhi                             21
+
+7 rows selected.
+
+SQL> select * from person where name='AAA' or age=21 ;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       101 AAA                       Bhopal                            22
+       102 BBB                       Indore                            21
+       103 AAA                       Bhopal                            25
+       104 CCC                       Delhi                             21
+       106 AAA                       Indore                            25
+       107 DDD                       Delhi                             21
+
+6 rows selected.
+
+SQL> select * from person where name='AAA' and location='Bhopal' or age=25 ;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       101 AAA                       Bhopal                            22
+       103 AAA                       Bhopal                            25
+       106 AAA                       Indore                            25
+
+
+BETWEEN
+-------
+
+SQL> select * from person ;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       101 AAA                       Bhopal                            22
+       102 BBB                       Indore                            21
+       103 AAA                       Bhopal                            25
+       104 CCC                       Delhi                             21
+       105 DDD                       Bhopal                            22
+       106 AAA                       Indore                            25
+       107 DDD                       Delhi                             21
+
+7 rows selected.
+
+SQL> select * from person where age between 21 and 24;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       101 AAA                       Bhopal                            22
+       102 BBB                       Indore                            21
+       104 CCC                       Delhi                             21
+       105 DDD                       Bhopal                            22
+       107 DDD                       Delhi                             21
+
+SQL> select * from person where age between 21 and 25;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       101 AAA                       Bhopal                            22
+       102 BBB                       Indore                            21
+       103 AAA                       Bhopal                            25
+       104 CCC                       Delhi                             21
+       105 DDD                       Bhopal                            22
+       106 AAA                       Indore                            25
+       107 DDD                       Delhi                             21
+
+7 rows selected.
+
+COMPARSION OPERATOR
+--------------------
+=	!= >=	>  	<=	<
+
+
+SQL> select * from person where age between 21 and 25;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       101 AAA                       Bhopal                            22
+       102 BBB                       Indore                            21
+       103 AAA                       Bhopal                            25
+       104 CCC                       Delhi                             21
+       105 DDD                       Bhopal                            22
+       106 AAA                       Indore                            25
+       107 DDD                       Delhi                             21
+
+7 rows selected.
+
+SQL> select * from person where age>24;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       103 AAA                       Bhopal                            25
+       106 AAA                       Indore                            25
+
+SQL> select * from person where age>25;
+
+no rows selected
+
+SQL> select * from person where age>=25;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       103 AAA                       Bhopal                            25
+       106 AAA                       Indore                            25
+
+IS NOT NULL
+-----------
+-> it is used to check value is 'not null';
+
+SQL> select * from person;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       101 AAA                       Bhopal                            22
+       102 BBB                       Indore                            21
+       103 AAA                       Bhopal                            25
+       104 CCC                       Delhi                             21
+       105 DDD                       Bhopal                            22
+       106 AAA                       Indore                            25
+       107 DDD                       Delhi                             21
+       108 CCC                                                         25
+
+8 rows selected.
+
+SQL> select * from person where location is not null;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       101 AAA                       Bhopal                            22
+       102 BBB                       Indore                            21
+       103 AAA                       Bhopal                            25
+       104 CCC                       Delhi                             21
+       105 DDD                       Bhopal                            22
+       106 AAA                       Indore                            25
+       107 DDD                       Delhi                             21
+
+7 rows selected.
+
+
+IS NULL
+-------
+-> It is used to check NULL values.
+
+SQL> select * from person where location is null;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       108 CCC                                                         25
+
+LIKE OPERATOR
+-------------
+-> It used to provide pattern matching.
+
+Wildcard		Description
+----------------------------
+%				no, single and more than one character.
+_				single character
+
+SQL> select * from person;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       101 AAA                       Bhopal                            22
+       102 BBB                       Indore                            21
+       103 AAA                       Bhopal                            25
+       104 CCC                       Delhi                             21
+       105 DDD                       Bhopal                            22
+       106 AAA                       Indore                            25
+       107 DDD                       Delhi                             21
+       108 CCC                                                         25
+
+8 rows selected.
+
+SQL> select * from person where location link 'b%';
+select * from person where location link 'b%'
+                                    *
+ERROR at line 1:
+ORA-00920: invalid relational operator
+
+
+SQL> select * from person where location like 'b%';
+
+no rows selected
+
+SQL> select * from person where location like 'B%';
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       101 AAA                       Bhopal                            22
+       103 AAA                       Bhopal                            25
+       105 DDD                       Bhopal                            22
+
+SQL> select * from person where location like 'B_';
+
+no rows selected
+
+SQL> select * from person where location like '%';
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       101 AAA                       Bhopal                            22
+       102 BBB                       Indore                            21
+       103 AAA                       Bhopal                            25
+       104 CCC                       Delhi                             21
+       105 DDD                       Bhopal                            22
+       106 AAA                       Indore                            25
+       107 DDD                       Delhi                             21
+
+7 rows selected.
+
+SQL> select * from person where location like '%a%';
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       101 AAA                       Bhopal                            22
+       103 AAA                       Bhopal                            25
+       105 DDD                       Bhopal                            22
+
+SQL> select * from person where location like '%e%';
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       102 BBB                       Indore                            21
+       104 CCC                       Delhi                             21
+       106 AAA                       Indore                            25
+       107 DDD                       Delhi                             21
+
+SQL> select * from person where location not like '%e%';
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       101 AAA                       Bhopal                            22
+       103 AAA                       Bhopal                            25
+       105 DDD                       Bhopal                            22
+
+EXISTS
+-------
+
+SQL> select name from person where exists(select id from person where id=101);
+
+NAME
+-------------------------
+AAA
+BBB
+AAA
+CCC
+DDD
+AAA
+DDD
+CCC
+
+8 rows selected.
+
+IN OPERATOR
+------------
+
+SQL> select * from person where name in('AAA','DDD','EEE');
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       101 AAA                       Bhopal                            22
+       103 AAA                       Bhopal                            25
+       105 DDD                       Bhopal                            22
+       106 AAA                       Indore                            25
+       107 DDD                       Delhi                             21
+
+SQL> select * from person where name not in('AAA','DDD','EEE');
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       102 BBB                       Indore                            21
+       104 CCC                       Delhi                             21
+       108 CCC                                                         25
+
+
+Functions:
+---------------
+MIN()
+MAX()
+COUNT()
+AVG()
+SUM()
+
+SQL> select min(age) from person;
+
+  MIN(AGE)
+----------
+        21
+
+SQL> select max(age) from person;
+
+  MAX(AGE)
+----------
+        25
+
+SQL> select count(age) from person;
+
+COUNT(AGE)
+----------
+         8
+
+SQL> select sum(age) from person;
+
+  SUM(AGE)
+----------
+       182
+
+
+SQL> select avg(age) from person;
+
+  AVG(AGE)
+----------
+
+
+NESTED QUERY
+SQL> select * from person where age = (select min(age) from person);
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       102 BBB                       Indore                            21
+       104 CCC                       Delhi                             21
+       107 DDD                       Delhi                             21
+
+
+=================================
+ORDER BY CLAUSE
+----------------
+
+SQL> select * from person order by age;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       104 CCC                       Delhi                             21
+       107 DDD                       Delhi                             21
+       102 BBB                       Indore                            21
+       105 DDD                       Bhopal                            22
+       101 AAA                       Bhopal                            22
+       108 CCC                                                         25
+       103 AAA                       Bhopal                            25
+       106 AAA                       Indore                            25
+
+8 rows selected.
+
+SQL> select * from person order by age ASC;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       104 CCC                       Delhi                             21
+       107 DDD                       Delhi                             21
+       102 BBB                       Indore                            21
+       105 DDD                       Bhopal                            22
+       101 AAA                       Bhopal                            22
+       108 CCC                                                         25
+       103 AAA                       Bhopal                            25
+       106 AAA                       Indore                            25
+
+8 rows selected.
+
+SQL> select * from person order by age DESC;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       106 AAA                       Indore                            25
+       103 AAA                       Bhopal                            25
+       108 CCC                                                         25
+       101 AAA                       Bhopal                            22
+       105 DDD                       Bhopal                            22
+       107 DDD                       Delhi                             21
+       102 BBB                       Indore                            21
+       104 CCC                       Delhi                             21
+
+8 rows selected.
+
+SQL> select * from person where name='AAA' order by age DESC;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       103 AAA                       Bhopal                            25
+       106 AAA                       Indore                            25
+       101 AAA                       Bhopal                            22
+
+SQL> select * from person where name='AAA' order by id DESC;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       106 AAA                       Indore                            25
+       103 AAA                       Bhopal                            25
+
+========================
+GROUP BY CLAUSE
+----------------
+SQL> select * from person;
+
+        ID NAME                      LOCATION                         AGE
+---------- ------------------------- ------------------------- ----------
+       101 AAA                       Bhopal                            22
+       102 BBB                       Indore                            21
+       103 AAA                       Bhopal                            25
+       104 CCC                       Delhi                             21
+       105 DDD                       Bhopal                            22
+       106 AAA                       Indore                            25
+       107 DDD                       Delhi                             21
+       108 CCC                                                         25
+
+8 rows selected.
+
+SQL> select location,count(*)  from person;
+select location,count(*)  from person
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL> select location,count(*)  from person group by location;
+
+LOCATION                    COUNT(*)
+------------------------- ----------
+Bhopal                             3
+                                   1
+Delhi                              2
+Indore                             2
+
+SQL> select *,count(*)  from person group by location;
+select *,count(*)  from person group by location
+        *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select name,count(*)  from person group by location;
+select name,count(*)  from person group by location
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> select location,count(*)  from person group by location;
+
+LOCATION                    COUNT(*)
+------------------------- ----------
+Bhopal                             3
+                                   1
+Delhi                              2
+Indore                             2
+
+SQL> select location,count(*)  from person where age>22 group by location;
+
+LOCATION                    COUNT(*)
+------------------------- ----------
+Bhopal                             1
+                                   1
+Indore                             1

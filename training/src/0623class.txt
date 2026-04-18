@@ -1,0 +1,220 @@
+=====================================================
+FileWriter class
+----------------
+-> it is used to write character oriented data to a file.
+-> It extends OutputStreamWriter class (it is used to convert character stream to byte stream).
+-> do not need to convert String into byte array
+methods:
+write(String)
+write(char)
+write(char[])
+close()
+
+Example:1
+import java.io.*;
+
+class Test 
+{	
+	public static void main(String[] args) throws IOException
+	{
+		FileWriter fw = new FileWriter("C:/javaprograms/new.txt");
+		fw.write("this is a test String");
+		fw.write('C');
+		
+		fw.close();
+	}
+}
+
+FileReader class
+-----------------
+-> It is used to read data from file.
+-> It extends InputStreamReader class (it reads bytes and decode them into character).
+Methods:
+int read()
+close()
+
+Example:1
+FileReader fr = new FileReader("C:/javaprograms/new.txt");
+		int a = fr.read();
+		while(a!=-1)
+		{
+			System.out.print((char)a);
+			a = fr.read();
+		}
+		fr.close();
+Example:2
+File f = new File("C:/javaprograms/new.txt");
+		FileReader fr = new FileReader(f);
+		
+		char[] ch = new char[(int)f.length()];   // long File length()
+		fr.read(ch);
+		for(char a:ch)
+		{
+			System.out.print(a);
+		}
+
+BufferedWriter class
+-------------------------
+-> It is used to provide buffering for FileWriter object.
+-> It makes the performance fast.
+-> it extends Writer class.
+Methods:
+void newLine()
+
+Example:1
+import java.io.*;
+
+class Test 
+{	
+	public static void main(String[] args) throws IOException
+	{
+		
+		FileWriter fw = new FileWriter("C:/javaprograms/new.txt");
+		BufferedWriter bw = new BufferedWriter(fw);
+		
+		bw.write("This is a test String");
+		bw.newLine(); // Line Seperator
+		bw.write('C');
+		
+		bw.close();
+		fw.close();
+	}
+}
+
+BufferedReader class
+------------------
+-> Unlike FileReader class, read data character by character but BufferedReader can read data Line by Line.
+
+Methods:
+int read()
+String readLine()
+
+Example:1
+import java.io.*;
+
+class Test 
+{	
+	public static void main(String[] args) throws IOException
+	{
+		
+		FileReader fr = new FileReader("C:/javaprograms/new.txt");
+		BufferedReader br = new BufferedReader(fr);
+		String a = br.readLine();
+		while(a!=null)
+		{
+			System.out.print(a);
+			a = br.readLine();
+		}
+		br.close();
+		fr.close();
+	}
+}
+
+PrintWriter class
+------------------
+-> We can write any type of data to the file.
+Methods:
+write()
+print()
+println()
+
+Example:1
+import java.io.*;
+
+class Test 
+{	
+	public static void main(String[] args) throws IOException
+	{
+		
+		PrintWriter pw = new PrintWriter("C:/javaprograms/new.txt");
+		
+		pw.write(100);
+		pw.println(100);
+		pw.print("Hello");
+		pw.close();
+	}
+}
+-------------------------------------------------------------------------
+Serialization and Deserialization
+---------------------------------
+Serialization
+-> It is a process of writing state of object to a file.
+-> It is a process of converting an object from java for writing in a file.
+
+-> we can serialize only serializable object.
+-> an object is said to be serializable if and only if the corresponding class
+ implements Serializable interface.
+
+
+Example:
+	class Test implements Serializable
+	{
+	}
+
+-> Serializable interface present in java.io package
+-> if we are trying to serialize a non serializable object then we will get
+	RTE- NotSerializableException.
+
+
+Example:
+import java.io.*;
+
+class A implements Serializable
+{
+	int a = 10;
+	int b = 20;
+}
+
+class Test 
+{	
+	public static void main(String[] args) throws IOException, ClassNotFoundException
+	{
+		
+		// Serialization
+		A a1 = new A();
+		FileOutputStream fos = new FileOutputStream("C:/javaprograms/new.txt");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(a1);
+		
+		// Deserialization
+		FileInputStream fis = new FileInputStream("C:/javaprograms/new.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		A a2 = (A)ois.readObject();
+		System.out.println(a2.a+" "+a2.b);
+	}
+}
+
+Example:2
+import java.io.*;
+
+class A implements Serializable
+{
+	int a = 10;
+	transient int b = 20;
+}
+
+class Test 
+{	
+	public static void main(String[] args) throws IOException, ClassNotFoundException
+	{
+		/*
+		// Serialization
+		A a1 = new A();
+		FileOutputStream fos = new FileOutputStream("C:/javaprograms/new.txt");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(a1);
+		*/
+		// Deserialization
+		FileInputStream fis = new FileInputStream("C:/javaprograms/new.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		A a2 = (A)ois.readObject();
+		System.out.println(a2.a+" "+a2.b); // 
+	}
+}
+
+transient keyword
+-> only applicable for variable but not for method and class.
+-> At the time of serialization if we do not want to save the value of a particular variable then we should declare transient.
+-> While performing JVM ignore orginal value of transient variable and save default value to the file.
+
+-> "transient means not to serialize".

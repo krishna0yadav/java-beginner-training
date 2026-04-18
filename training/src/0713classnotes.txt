@@ -1,0 +1,107 @@
+===============================13-July-2020====================================
+Insert record using Scanner class.
+----------------------------------
+
+package com.database;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class DbConnection {
+
+	public static Connection takeConnection()
+	{
+		Connection con = null;
+		try
+		{
+			//1.
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			//2. 
+			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","system","Bhopal12");
+			
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		return con;
+	}
+}
+
+package jdatabase;
+
+import java.sql.Connection;
+import java.sql.Statement;
+import java.util.Scanner;
+
+import com.database.DbConnection;
+
+public class Test1 {
+
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		int id = sc.nextInt();
+		sc.nextLine();
+		String name = sc.nextLine();
+		int age = sc.nextInt();
+		
+		try
+		{
+			Connection con = DbConnection.takeConnection();
+		
+			//3.            INSERT INTO person VALUES(101,'ajay',21);
+			String query = "INSERT INTO person VALUES("+id+",'"+name+"',"+age+")";
+			Statement st = con.createStatement();
+			st.executeUpdate(query);
+			System.out.println("Row Inserted");
+			con.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+}
+-------------------------------------------
+Insert record using Command Line Argument.
+------------------------------------------
+
+MYSQL: show tables;
+
+ORACLE: select table_name from all_tables; or  select * from tab;
+
+package jdatabase;
+
+import java.sql.Connection;
+import java.sql.Statement;
+import java.util.Scanner;
+
+import com.database.DbConnection;
+
+public class Test1 {
+
+	public static void main(String[] args)
+	{
+		int id = Integer.parseInt(args[0]);
+		String name = args[1];
+		int age = Integer.parseInt(args[2]);
+		
+		try
+		{
+			Connection con = DbConnection.takeConnection();
+		
+			//3.            INSERT INTO person VALUES(101,'ajay',21);
+			String query = "INSERT INTO person VALUES("+args[0]+",'"+args[1]+"',"+args[2]+")";
+			Statement st = con.createStatement();
+			st.executeUpdate(query);
+			System.out.println("Row Inserted");
+			con.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+}

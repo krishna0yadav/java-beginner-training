@@ -1,0 +1,175 @@
+==============================15-July-2020==============================
+CallableStatement
+-> It is a sub interface of PreparedStatement
+-> It is used to execute stored procedure.
+
+Task:
+-----
+Calling SP from java
+--------------------
+SQL> CREATE OR REPLACE PROCEDURE sum1(a IN NUMBER,b IN NUMBER,c OUT NUMBER) as
+  2  begin
+  3  c := a+b;
+  4  end;
+  5  /
+  
+ JP:
+ 
+		try
+		{
+			Connection con = DbConnection.takeConnection();
+			CallableStatement cst = con.prepareCall("{ call sum1(?,?,?)}");
+			cst.setInt(1, 20);
+			cst.setInt(2, 30);
+			cst.registerOutParameter(3, Types.INTEGER);
+			cst.executeUpdate();
+			
+			System.out.println(cst.getInt(3));
+			
+		}
+		catch(Exception e)
+		{
+			
+		}
+-----------------
+Task:
+Create SP to insert data
+-----------------------------
+SQL> create or replace procedure insdata
+  2  (
+  3  id1 in int,
+  4  name1 in varchar2,
+  5  age1 in int
+  6  )
+  7  as begin
+  8  insert into person values(id1,name1,age1);
+  9  end;
+ 10  /
+
+Procedure created.
+
+JP
+
+	public static void main(String[] args) {
+
+		try
+		{
+			Connection con = DbConnection.takeConnection();
+			CallableStatement cst = con.prepareCall("{ call insdata(?,?,?)}");
+			cst.setInt(1, 20);
+			cst.setString(2, "Sanjay");
+			cst.setInt(3, 50); 
+			cst.execute();
+			
+			System.out.println("Done");
+			
+		}
+		catch(Exception e)
+		{
+			
+		}
+	}
+---------------
+Task: Create SP to retrive data
+-------------------------
+SP:
+SQL> create or replace procedure seldata
+  2  (
+  3  id1 in int,
+  4  name1 out varchar2
+  5  )
+  6  as begin
+  7  select name into name1 from person where id=id1;
+  8  end;
+  9  /
+
+
+Program:
+public static void main(String[] args) {
+
+		try
+		{
+			Connection con = DbConnection.takeConnection();
+			CallableStatement cst = con.prepareCall("{ call seldata(?,?)}");
+			cst.setInt(1, 10);
+			cst.registerOutParameter(2, Types.VARCHAR);
+			cst.execute();
+			
+			System.out.println(cst.getString(2));
+			
+		}
+		catch(Exception e)
+		{
+			
+		}
+	}
+=====================================================
+DatabaseMetaData:
+-> It is an interface that is provides methods to get meta data(data about data).
+Example:
+public static void main(String[] args) {
+
+		try
+		{
+			Connection con = DbConnection.takeConnection();
+			DatabaseMetaData db = con.getMetaData();
+			System.out.println(db.getUserName()); // SYSTEM
+			System.out.println(db.getDriverName()); //Oracle JDBC driver
+			System.out.println(db.getDriverVersion()); // 10.2.0.1.0
+			System.out.println(db.getDatabaseProductName()); //Oracle
+			System.out.println(db.getDatabaseProductVersion());//Oracle Database 11g Release 11.1.0.0.0 - Production
+			
+			String[] table ={"TABLE"};
+			ResultSet rs = db.getTables(null, null, null, table);
+			while(rs.next())
+			{
+				System.out.println(rs.getString(3));
+			}
+		}
+		catch(Exception e)
+		{
+			
+		}
+	}
+------------------
+ResultSetMetaData:
+-> It is an interface which contains methods to get information about table elements.
+
+Example:
+package com.database;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Types;
+
+import com.connection.DbConnection;
+
+public class Test {
+
+	public static void main(String[] args) {
+
+		try
+		{
+			Connection con = DbConnection.takeConnection();
+			
+			PreparedStatement ps = con.prepareStatement("select * from person");
+			ResultSet rs = ps.executeQuery();
+			ResultSetMetaData rsmd = rs.getMetaData();
+			
+			System.out.println(rsmd.getColumnCount()); //3
+			System.out.println(rsmd.getColumnName(1)); //ID
+			System.out.println(rsmd.getColumnTypeName(1)); //NUMBER
+		}
+		catch(Exception e)
+		{
+			
+		}
+	}
+
+}
+========================
+HW: PBL pdf transcation

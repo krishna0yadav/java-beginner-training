@@ -1,0 +1,83 @@
+Garbage Collection
+------------------
+Garbage:
+
+-> It means unrefrenced object.
+-> 1. null refrence
+	Example:
+	  A a = new A();
+	  a=null;
+
+   2. assigning refrence to another refrence
+   Example:
+      A a = new A();
+	  A b = new A();
+	  a=b;
+	  
+   3. nameless object 
+	Example:
+		new A();
+
+Garbage Collection:
+-> It is a process of removing the runtime unused memory automatically.
+-> Memory Efficent
+-> bcoz garabage collector removes all unrefrenced objects from heap memory.
+
+
+gc() method
+-----------
+-> gc() method is used to invoke the garbage collector to perform cleanup processing. 
+-> gc() method is found in System class and Runtime class.
+-> call System.gc() and Runtime.getRuntime().gc() 
+-> garabage collection is performed by daemon thread(garabage collector).
+-> this thread call finalize() method before object is garabage collected.
+
+========
+Extra: whose implementation is written in other PL is called native method.
+=======
+
+finalize() method
+------------------
+-> it is a method of Object class.
+-> it is executed before garabage collected.
+
+Example:
+
+class Test 
+{	
+	public static void main(String[] args)
+	{
+		Test t = new Test();
+		t= null;
+		System.gc();
+	}
+	public void finalize()
+	{
+		System.out.println("garbage collected");
+	}
+}
+================================================================
+JUnit
+-----
+-> It is a open source testing framework for java programming language.
+-> Unit Testing is used to check small code by creating method.
+
+Features:
+1. It is easy.
+2. It provides annotations to identify test methods.
+3. It provides test runner for running the tests.
+4. Test can be run automatically.
+
+Test Suite
+-> If you want to execute multiple test cases in a specific order.
+-> It can be done by combining all the test cases in a single origin.
+-> this origin is called test suite.
+
+Test Runner
+-> It is used to executing test cases.
+-> JUnitCore class is used in order to execute tests.
+-> runclasses() method is used to run one or more than one test cases.
+
+JUnit classes
+-> JUnit classes are used in writing test cases.
+-> Some classes are Assert, TestCase, TestResult etc.

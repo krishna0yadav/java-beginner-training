@@ -1,0 +1,27 @@
+Exception Handling
+------------------------
+
+1. Exception:
+	-> It is a abnormal condition.
+	-> Exceptions disturbs normal flow of the program.
+	-> JVM is responsible to generate exceptions.
+	-> It is an object which is thrown at runtime.
+	-> There are 2 types of exceptions:
+		1. Checked
+			Classes which inherit Throwable class directly
+		2. Unchecked
+			Classes which inherit RuntimeException
+	
+2. Exception Handling
+	1. try- code that might throw an exception
+	2. catch- to handle that exception
+	3. finally- 
+	4. throw
+	5. throws
+==============================
+
+throw keyword
+---------------
+-> It is used ton explicitly throw a single exception.
+-> throw keyword is mainly used for Custom Exception.
+

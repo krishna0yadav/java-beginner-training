@@ -1,0 +1,193 @@
+Generic class  / Template
+-------------
+-> It is used to create template class.
+-> Hence we can used with different types of object, that as allow to reuse code.
+
+-> Syntax:
+ 
+    class-name<datatype> ref-name = new class-name<datatype>();
+	                             or
+	class-name<datatype> ref-name = new class-name<>();						 
+
+Example:
+class Gen<T1,T2>
+{
+	T1 a;
+	T2 b;
+	Gen(T1 a,T2 b)
+	{
+	  this.a = a;
+	  this.b = b;
+	}
+	public T1 getValue1()
+	{
+		return a;
+	}
+	public T2 getValue2()
+	{
+		return b;
+	}
+}
+public class Test {
+
+	public static void main(String[] args)
+	{
+		Gen<Integer,String> g1 = new Gen<>(100,"ABC");
+		System.out.println(g1.getValue1()+" "+g1.getValue2()); //
+		
+		Gen<String,Integer> g2 = new Gen<>("ABC",200);
+		System.out.println(g2.getValue1()+" "+g1.getValue2()); // 
+	}
+
+}
+
+
+Collection
+----------
+-> Collection represents a single unit of object that is group.
+-> Collection is a framework.
+-> It provides an architecture to store and manipulate the group of objects.
+-> All classes and interfaces are stored in java.util package.
+
+ArrayList class
+---------------
+-> It uses a dynamic array for storing data.
+-> It can contains duplicate elements.
+-> It maintains insertion order.
+-> It allows random access(bcoz array works at the index basis).
+-> Syntax:
+	ArrayList<ref-type> obj-name = new ArrayList<>();
+
+Methods:
+boolean add()
+boolean addAll()
+boolean remove()
+boolean removeAll()
+boolean retainAll()
+int size()
+void clear()
+boolean contains()
+boolean containsAll()
+
+Exampler:1
+import java.util.*;
+public class Test {
+
+	public static void main(String[] args)
+	{
+		ArrayList<String> a1 = new ArrayList<>();
+		a1.add("A");
+		a1.add("B");
+		a1.add("C");
+		a1.add(1,"D");
+		a1.add("B");
+		a1.add("B");
+		System.out.println(a1);
+		
+		for(String b: a1)
+		{
+			System.out.println(b);
+		}
+
+		
+	}
+
+}
+
+Task1: Check arraylist is empty or not.
+import java.util.*;
+public class Test {
+
+	public static void main(String[] args)
+	{
+		ArrayList<String> a1 = new ArrayList<>();
+		a1.add("A");
+		a1.add("B");
+		a1.add("C");
+		a1.add(1,"D");
+		a1.add("B");
+		a1.add("B");
+		System.out.println(a1.isEmpty());
+		a1.clear();
+		System.out.println(a1.isEmpty());
+		
+	}
+
+}
+
+Task2: Sort an ArrayList
+import java.util.*;
+public class Test {
+
+	public static void main(String[] args)
+	{
+		ArrayList<String> a1 = new ArrayList<>();
+		a1.add("A");
+		a1.add("B");
+		a1.add("C");
+		a1.add(1,"D");
+		a1.add("B");
+		a1.add("B");
+		System.out.println(a1);
+		Collections.sort(a1);
+		System.out.println(a1);
+	}
+}
+
+Task3: Reverse ArrayList
+import java.util.*;
+public class Test {
+
+	public static void main(String[] args)
+	{
+		ArrayList<String> a1 = new ArrayList<>();
+		a1.add("A");
+		a1.add("B");
+		a1.add("C");
+		a1.add(1,"D");
+		a1.add("B");
+		a1.add("B");
+		System.out.println(a1);
+		Collections.reverse(a1);
+		System.out.println(a1);
+	}
+}
+
+Task4: swap two elements in an AL
+import java.util.*;
+public class Test {
+
+	public static void main(String[] args)
+	{
+		ArrayList<String> a1 = new ArrayList<>();
+		a1.add("A");
+		a1.add("B");
+		a1.add("C");
+		a1.add(1,"D");
+		a1.add("B");
+		a1.add("B");
+		System.out.println(a1);
+		Collections.swap(a1,0,2);
+		System.out.println(a1);
+	}
+}
+
+Task5: Clone an AL to another AL
+import java.util.*;
+public class Test {
+
+	public static void main(String[] args) 
+	{
+		ArrayList<String> a1 = new ArrayList<>();
+		a1.add("A");
+		a1.add("B");
+		a1.add("C");
+		a1.add(1,"D");
+		a1.add("B");
+		a1.add("B");
+		System.out.println(a1);
+		
+		ArrayList<String> b1 = (ArrayList<String>)a1.clone(); 
+		System.out.println(b1);
+	}
+}

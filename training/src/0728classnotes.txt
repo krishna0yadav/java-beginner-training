@@ -1,0 +1,216 @@
+========================28-July-2020=========================================
+Regex Program 
+1.Write validation functions and modify the onSubmit event Handler in the form code to validate the following form fields:
+1. Member number
+• Must be a number
+2. Password
+• Must be longer than 4 characters
+If an error occurs, use an alert box to display an error message for the first field in error and place the cursor in the first field in error.
+
+
+<html>
+<head>
+	<script>
+		function show()
+		{
+			var a = document.getElementById('num1').value;
+			var b = document.getElementById('pass').value;
+			
+			var pat1= /^\d+$/;
+			var pat2= /\w{4}/;
+			if(a.match(pat1))
+			{
+				if(b.match(pat2))
+				{
+					document.getElementById('sp1').innerHTML="Valid";
+				}
+				else
+				{
+					document.getElementById('sp1').innerHTML="Invalid";
+					document.getElementById('pass').select();
+				}
+			}
+			else
+			{
+				document.getElementById('sp1').innerHTML="Invalid";
+				document.getElementById('num1').select();
+			}
+		}
+	
+	</script>
+</head>
+<body>
+<form>
+	<input type="text" id="num1" />
+	<input type="password" id="pass" />
+	<input type="button" value="show" onclick="show()"/>
+
+</form>
+	<span id="sp1"></span>	
+</body>
+</html>
+
+2. Write validation functions and modify the onSubmit event Handler in the form code to validate the following form fields:
+1. Phone Number
+• Must be below format
+           XXX-XXX-XXXX
+           XXX.XXX.XXXX
+           XXX XXX XXXX 
+
+
+<html>
+<head>
+	<script>
+		function show()
+		{
+			var a = document.getElementById('num1').value;
+			var pat1 = /^\d{3}[-. ]?\d{3}[-. ]?\d{4}$/;
+			
+			if(a.match(pat1))
+			{
+					document.getElementById('sp1').innerHTML="Valid";
+			}
+			else
+			{
+				document.getElementById('sp1').innerHTML="Invalid";			
+			}
+		}
+	</script>
+</head>
+<body>
+<form>
+	<input type="text" id="num1" />
+	<input type="button" value="show" onclick="show()"/>
+
+</form>
+	<span id="sp1"></span>	
+</body>
+</html>
+
+3. Write a validation function to check a password between 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase 
+[Hint use: ?=]
+
+how are you
+/are (?= you)/
+<html>
+<head>
+	<script>
+		function show()
+		{
+			var a = document.getElementById('num1').value;
+			var pat1 = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}/;
+			
+			if(a.match(pat1))
+			{
+					document.getElementById('sp1').innerHTML="Valid";
+			}
+			else
+			{
+				document.getElementById('sp1').innerHTML="Invalid";
+				
+			}
+		}
+	
+	</script>
+</head>
+<body>
+<form>
+	<input type="text" id="num1" />
+	<input type="button" value="show" onclick="show()"/>
+
+</form>
+	<span id="sp1"></span>	
+</body>
+</html>
+
+----------------------------------------------------
+Revision class:
+	1. 1:00 to 2:00
+	2. 4:30 to 6:00
+
+Regular class:
+	8:00 to 9:00 PM
+-----------------------------------------
+Bootstrap
+---------
+-> Bootstrap is a front end framework.
+-> It is used to create reponsive web layout.
+-> Open source
+Example:
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="E:/Software/bootstrap-3.4.1-dist/css/bootstrap.min.css" />
+</head>
+<body>
+	<h1>Hello world</h1>
+</body>
+</html>
+
+Bootstrap Table:
+-----------------
+classes:
+	<table> :
+	
+	.table
+	.table-bordered
+	.table-striped
+	.table-hover
+	
+	<tr>,<th>,<td>:
+	.active		-> grey
+	.success     -> green
+	.info       -> light blue 
+	.warning    -> orange 
+	.danger     -> Red 
+Example:
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="E:/Software/bootstrap-3.4.1-dist/css/bootstrap.min.css" />
+</head>
+<body>
+	<table class="table table-bordered ">
+		<tr class="danger">
+			<th>SNO</th>
+			<th>NAME</th>
+			<th>AGE</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>Ajay</td>
+			<td>20</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>Vijay</td>
+			<td>22</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td class="success">Ayushi</td>
+			<td>21</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>Naman</td>
+			<td>25</td>
+		</tr>
+	</table>
+</body>
+</html>
+
+	
+Bootstrap Image
+----------------------
+classes:
+	img-rounded
+	img-circle
+	img-thumbnail
+Example:
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="E:/Software/bootstrap-3.4.1-dist/css/bootstrap.min.css" />
+</head>
+<body>
+	<img src="C:/Users/India/Desktop/632200.jpg" class="img-thumbnail" height="50%" width="50%"/>
+</body>
+</html>

@@ -1,0 +1,233 @@
+====================================18-July-2020==================================
+Formatting Tags : marquee
+------------------------------
+<marquee></marquee>
+
+Attributes:
+	direction: left,right,up,down
+	bgcolor: 
+	width: percentage
+	height: percentage
+	behavior: alternate,slide
+	scrolldelay: scrolling speed
+
+Example:
+<html>
+	<head>
+		<title>My first HTML Program</title>
+	</head>
+	
+	<body>
+		<marquee direction="left" bgcolor="blue" behavior="scroll" scrolldelay="500">
+		My first HTML Program
+		</marquee>
+	</body>
+</html>
+-----------------------------
+Comment tag
+-----------
+<!-- comment -->
+
+-----------------------------
+List
+----
+1. Ordered List
+	<ol></ol>
+2. Unordered List
+	<ul></ul>
+3. Definition List
+	<dl><dl>
+
+In ordered and Unordered case, each list items start with <li> tag.
+In Definition list, item start with <dt> and <dd> tags.
+
+1. Ordered List
+	<ol></ol>
+	
+	Attributes:
+	start: value
+	type: a,A,1,i,I
+	
+	Example:
+	<ol start="10" type="A">
+			<li>One</li>
+			<li>Two</li>
+			<li>Three</li>
+			<li>Four</li>
+			<li>Five</li>
+		</ol>
+
+2. Unordered List
+	<ul></ul> 
+	
+	Attributes:
+	type: circle,square,disc,none
+	
+	Example:
+	<ul type="square">
+			<li>One</li>
+			<li>Two</li>
+			<li>Three</li>
+			<li>Four</li>
+			<li>Five</li>
+		</ul>
+
+3. Definition List
+	<dl><dl>
+	
+	Example:
+	<dl>
+			<dt>Introduction</dt>
+			<dd>My first HTML Program</dd>
+		</dl>
+------------------------------------------------
+Image Tag
+-----------
+<img/>
+
+	Attribute:
+	src: path
+	width: 
+	height:
+	border: 
+	
+	Example:
+	<img src="C:/Users/India/Desktop/632200.jpg" width="50%" height="50%"
+		border="5" alt="Flower pot"/>
+
+---------------------------------------------------------
+Anchor Tag
+-------------
+<a></a>
+
+	Attribue:
+	
+	href: path
+
+	Example:
+	<a href="C:/javaprograms/index.html">Click on this Link</a>
+
+Question: 
+Create a page which conains two links- one at the top of page and one at bottom. on clicking the top link, the page has to scroll down to the bottom of the page where bottom link is present, One clicking the bottom link, the page has to scroll up to the top of the page.
+
+		<a id="up" href="#down">Jump to Down</a>
+		<p>
+		
+		</p>
+		<a id="down" href="#up">Jump to Top</a>
+--------------------------------------------------------------------
+Table tag
+---------
+<table></table>
+
+	internal tags:
+		<tr></tr>, <th></th> and <td></td>
+	
+	Attribute:
+		border:
+		width:
+		align: left, right,center
+		cellspacing:
+		cellpadding:
+		bgcolor:
+	
+	Example:
+		<table border="1" width="50%" align="right" cellspacing="10px"
+		cellpadding="5px" bgcolor="">
+			<tr> 
+				<th>Name</th> 
+				<th>Age</th> 
+			</tr>
+			<tr>
+				<td>Akarsh</td>
+				<td>18</td>
+			<tr>
+			<tr>
+				<td>Sumit</td>
+				<td>19</td>
+			<tr>
+			<tr><td>Rupali</td><td>20</td><tr>
+			<tr><td>Samee</td><td>21</td><tr>
+			<tr><td>Ayushi</td><td>22</td><tr>
+		</table>
+
+	<tr><td><tg> Attribue:
+	align
+	bgcolor
+	valing
+	colspan
+	rowspan
+	
+---------------------------------------------------------------------
+Form tag
+--------
+<form></form>
+
+	attribute
+	
+	name:
+	method:
+	action:
+	
+	Example:
+	<form name="registration" method="GET" action="serverside filename" >
+	</form>
+
+GET method:
+-> It is used to forward the request.
+-> It is restricted to send upto 1024 character only.
+-> It produce a string that appears in Address bar
+-> Never use GET method if you have sensitive information to sent to the server.
+-> GET cannot be used to send binary data.
+
+POST method:
+-> It transfers the information using HTTP header.
+-> doesn't have any restriction on data size.
+-> can be used to send binary data.
+-> The data sent by POST method goes through HTTp header so security depends on HTTP protocol.
+
+======================================================================
+Queries Sample Solution
+-----------------------
+				  Table: Employee
+
+ emp_id | emp_name | job_name  | manager_id | hire_date  | salary  | commission | dep_id
+--------+----------+-----------+------------+------------+---------+------------+--------
+  68319 | KAYLING  | PRESIDENT |            | 1991-11-18 | 6000.00 |            |   1001
+  66928 | BLAZE    | MANAGER   |      68319 | 1991-05-01 | 2750.00 |            |   3001
+  67832 | CLARE    | MANAGER   |      68319 | 1991-06-09 | 2550.00 |            |   1001
+  65646 | JONAS    | MANAGER   |      68319 | 1991-04-02 | 2957.00 |            |   2001
+  67858 | SCARLET  | ANALYST   |      65646 | 1997-04-19 | 3100.00 |            |   2001
+  69062 | FRANK    | ANALYST   |      65646 | 1991-12-03 | 3100.00 |            |   2001
+  63679 | SANDRINE | CLERK     |      69062 | 1990-12-18 |  900.00 |            |   2001
+  64989 | ADELYN   | SALESMAN  |      66928 | 1991-02-20 | 1700.00 |     400.00 |   3001
+  65271 | WADE     | SALESMAN  |      66928 | 1991-02-22 | 1350.00 |     600.00 |   3001
+  66564 | MADDEN   | SALESMAN  |      66928 | 1991-09-28 | 1350.00 |    1500.00 |   3001
+  68454 | TUCKER   | SALESMAN  |      66928 | 1991-09-08 | 1600.00 |       0.00 |   3001
+  68736 | ADNRES   | CLERK     |      67858 | 1997-05-23 | 1200.00 |            |   2001
+  69000 | JULIUS   | CLERK     |      66928 | 1991-12-03 | 1050.00 |            |   3001
+  69324 | MARKER   | CLERK     |      67832 | 1992-01-23 | 1400.00 |            |   1001
+
+
+
+
+1. Write a query in SQL to find the salaries of all employees.
+SELECT salary FROM employee;
+
+2. Write a query in SQL to display the unique designations for the employees.
+SELECT DISTINCT designation REOM employee;
+
+3. Write a query in SQL to list the employees who does not belong to department 2001.
+SELECT * FROM employees WHERE dep_id NOT IN (2001);
+4. Write a query in SQL to list the details of the employees whose salary is more than the salary of JONAS.
+SELECT * FROM employees WHERE salary > (SELECT salary FROM employees WHERE emp_name = JONAS');
+
+5. Write a query in SQL to list the employees whose salary is more than the total remuneration of the SALESMAN.
+SELECT *FROM employees WHERE salary > (SELECT max(salary+commission) FROM employees WHERE job_name = SALESMAN');
+
+
+
+
+
+
+

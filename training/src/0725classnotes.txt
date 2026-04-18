@@ -1,0 +1,187 @@
+==============================25-July-2020==================================
+DOM
+---
+-> Document Object Model
+-> When HTML doc is loaded in WB, it becomes a document object.
+-> By the help of DOM , we can add dynamic content to web page.
+-> Before:
+	window.document
+-> present:
+	document
+
+Methods:
+	write();				-> write a given string on the doc.
+	getElementById()        -> it returns the element having given id value.
+ 	getElementsByName()		-> it returns all the element havinf given name value.
+	getElementsByTagName()
+	getElementsByClassName()
+
+----------------------------------------------------
+Example:1 getElementsByName()
+<html>
+<head>
+	<script>
+		function show()
+		{
+			var a = document.getElementsByName('gender');
+			alert(a);
+			alert(a.length);
+			alert(a[1].value);
+		}
+	</script>
+</head>
+<body>
+	<form>
+		<input type="radio" name="gender" value="Male"/>
+		<input type="radio" name="gender" value="Female"/>
+		<input type="button" onClick="show()" value="show"/>
+	</form>
+</body>
+</html>
+-------------------------------------------------------------
+Example:2 getElementsByTagName()
+
+
+<html>
+<head>
+	<script>
+		function show()
+		{
+			var a = document.getElementsByTagName('p');
+			alert(a[1].innerHTML);
+		}
+	</script>
+</head>
+<body>
+	<p>qwertyuiopqwertyuioqwertyuioqwertyui</p>
+	<p>asdfghjklasdfghjksdfghjkl</p>
+	<p>zxcvbnmzxcvbn</p>
+	<button onclick="show()">show</button>
+</body>
+</html>
+
+-------------------------------------------------------------
+Example:3 getElementsByClassName()
+
+----------------------------------------
+Property: innerText
+--------------------
+-> It can be used to write the dynamic text to html doc.
+-> This text will not be interpreted(normal text).
+-> used in password strength, msg validation, user validation etc.
+
+Example: password strength
+
+<html>
+<head>
+	<script>
+		function show()
+		{
+			var res="";
+			var a = document.form1.pass.value;
+			if (a.length>=10)
+			{
+				res="Excellent";
+			}
+			else if (a.length>5 && a.length<=8)
+			{
+				res="good";
+			}
+			else
+			{
+				res="poor";
+			}
+			document.getElementById('sp1').innerText=res;
+		}
+	</script>
+</head>
+<body>
+	<form name="form1">
+		<input type="password" value=""  name="pass" onkeyup="show()" placeholder="Enter Password"/>
+		password strength:<span id="sp1"></span>
+	</form>
+</body>
+</html>
+
+2.
+
+<html>
+<head>
+	<script>
+		function show()
+		{
+			var res="";
+			var b;
+			var a = document.form1.pass.value;
+			if (a.length>=10)
+			{
+				res="Excellent";
+				b = document.getElementById('sp1').style.color="blue";
+			}
+			else if (a.length>5 && a.length<=9)
+			{
+				res="good";
+				b = document.getElementById('sp1').style.color="green";
+			}
+			else
+			{
+				res="poor";
+				b = document.getElementById('sp1').style.color="red";
+				
+			}
+			document.getElementById('sp1').innerText=res;
+		}
+	</script>
+</head>
+<body>
+	<form name="form1">
+		<input type="password" value=""  name="pass" onkeyup="show()" placeholder="Enter Password"/>
+		password strength:<span id="sp1"></span>
+	</form>
+</body>
+</html>
+
+---------------------------------------------------------
+Example: Re-enter password Validation
+--------------------------------------
+
+Example: Email Validation
+		-> email must contain @ and . character.
+		-> atleast one character before @ and after @
+		-> atleast two characters after . (dot)
+
+
+<html>
+<head>
+	<script>
+		function show()
+		{
+			var a = document.form1.email.value;
+			//a@b.cc
+			var at = a.indexOf("@"); //1
+			var dot = a.indexOf("."); //3
+			if(dot>at)
+			{
+				if(at>=1 && at+1<dot && dot+2<a.length)
+				{
+					document.write("true");
+				}
+				else
+				{
+				document.write("false");
+				}	
+			}
+			else
+			{
+				document.write("false");
+			}
+		}
+	</script>
+</head>
+<body>
+	<form name="form1" onsubmit="show()">
+		<input type="text" value=""  name="email"  placeholder="Enter Email"/>
+		<input type="submit"/>
+	</form>
+</body>
+</html>

@@ -1,0 +1,66 @@
+
+=========================06-July-2020=======================================
+Oracle Database
+
+	-> It is a Relational Database Management System.
+	-> Relational:	Relations in th form of tables.
+	-> Database: 	Collection of data.
+	-> Management System: way to manage data.
+						-> To minimize redundancy [correct]
+						-> To remove redundancy   [Incorrect]
+						-> to remove Data Inconsistency.[Correct]
+
+Editions:
+	-> Enterprises Edition: 
+	-> Standard Edition:
+	-> Express Edition: Lightweight, free and limited.
+	-> Oracle Lite:     Designed for mobile devices.
+	
+======================================================
+SQL Languages:
+
+DDL: Data Definition Language
+[Tables]
+	-> create : to Create new Table in the database.
+	-> alter  :
+		-> add one column: ALTER TABLE table-name ADD col-name with definition
+		-> add multi cols: 
+				ALTER TABLE table-name 
+				ADD(
+				col-name with definition,
+				col-name with definition,
+				col-name with definition
+				);
+		-> modify:
+				ALTER TABLE table-name
+				MODIFY column-name and its definition
+		-> Drop:
+				ALTER TABLE table-name
+				DROP col-name;
+		-> rename:
+				ALTER TABLE table-name
+				RENAME COLUMN old-col-name TO new-col-name;
+				
+	-> drop	  : DROP TABLE table-name;
+	-> rename : RENAME old_table-name to new_table_name;
+	-> truncate : TRUNCATE TABLE table-name;
+	
+DML: Data Manipulation Language
+[Data]
+	-> insert : 
+	-> select :
+	-> update :
+	-> delete :
+
+TCL: Transcation Control Language
+[Transcation]
+	-> commit
+	-> savepoint
+	-> rollback
+
+DCL: Data Control Language
+[Permission]
+	-> grant
+	-> revoke
+
+--------------------------------------------------

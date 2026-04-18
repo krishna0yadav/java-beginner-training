@@ -1,0 +1,255 @@
+=========================04-July-2020=======================================
+Daemon Thread
+----------
+-> It works at background.
+-> The threads which are executing at background which are giving support to the foreground thread.
+-> It is a Low Priority thread.
+-> Its life is depends on normal thread.
+
+-> Example:
+	-> Garbage Collector.
+	-> Default exception handler.
+Example:
+public class Test extends Thread{
+	public void run() // Running state
+	{		
+		System.out.println("Daemon Thread");
+	}
+	public static void main(String[] args) 
+	{ 	
+		Test t = new Test();
+		t.setDaemon(true);
+		t.start();
+		
+		for(int i=1;i<=5;i++)
+		{
+			try
+			{
+				System.out.println("Main Thread");
+			}
+			catch(Exception e)
+			{}
+		}		
+	}
+}
+
+Task: Learn Hook Thread , Synchronized block
+synchronized (Object-refrence)
+{
+}
+
+Example:
+public class Test extends Thread{
+	
+	public void run() // Running state
+	{		
+		System.out.println(Thread.currentThread().isDaemon());
+	}
+
+	public static void main(String[] args) 
+	{ 	
+		Test t = new Test();
+		t.setDaemon(true);
+		t.start();
+		
+		
+		
+	}
+}
+----------------------------------------------------
+Synchronization:
+---------------
+-> It is a process which allows only one thread to access the shared resource.
+
+synchronized modifier:
+-> It is aplicable only for methods.
+
+Example:
+	
+	void show()   // non-synchronized method
+	{
+	}
+	
+	synchronized void show() // synchronized method
+	{
+	}
+
+non-synchronized:
+-> Multiple threads can access non-synchronized at a time.
+-> Data inconsistency proble may occur.
+-> Not thread safe.
+-> Performance increase/fast.
+
+Synchronized:
+-> Only one thread can access at a time.
+-> Thread safe.
+-> Preformance decrease/ slow.
+
+Example:
+class A
+{
+	static void show(String s) // non-sychronized method
+	{
+		for(int i=1;i<=5;i++)
+		{
+			System.out.println(s);
+			try{
+				Thread.sleep(1000);
+			}
+			catch(Exception e)
+			{
+				
+			}
+		}
+	}
+}
+
+class Thread1 extends Thread
+{
+	public void run()
+	{
+		A.show("Ajay");
+	}
+}
+class Thread2 extends Thread
+{
+	public void run()
+	{
+		A.show("Vijay");
+	}
+}
+class Thread3 extends Thread
+{
+	public void run()
+	{
+		A.show("Sanjay");
+	}
+}
+
+public class Test{
+
+	public static void main(String[] args) 
+	{ 	
+		Thread1 t1 = new Thread1();
+		Thread2 t2 = new Thread2();
+		Thread3 t3 = new Thread3();
+		
+		t1.start();
+		t2.start();
+		t3.start();
+		
+	}
+}
+
+Example:
+class A
+{
+	static synchronized void show(String s) // non-sychronized method
+	{
+		for(int i=1;i<=5;i++)
+		{
+			System.out.println(s);
+			try{
+				Thread.sleep(1000);
+			}
+			catch(Exception e)
+			{
+				
+			}
+		}
+	}
+}
+
+class Thread1 extends Thread
+{
+	public void run()
+	{
+		A.show("Ajay");
+	}
+}
+class Thread2 extends Thread
+{
+	public void run()
+	{
+		A.show("Vijay");
+	}
+}
+class Thread3 extends Thread
+{
+	public void run()
+	{
+		A.show("Sanjay");
+	}
+}
+
+public class Test{
+
+	public static void main(String[] args) 
+	{ 	
+		Thread1 t1 = new Thread1();
+		Thread2 t2 = new Thread2();
+		Thread3 t3 = new Thread3();
+		
+		t1.start();
+		t2.start();
+		t3.start();
+		
+	}
+}
+
+// doubt session: native method,
+
+=================================================
+volatile modifier
+------------------
+-> It is apllicable only for variables.
+-> It is used to modify the value of a variable by different thread.
+-> Thread safe
+-> It can be used either primitive or object type.
+-> Thread cannot be blocked for waiting in case of volatile.
+
+Example:
+class A
+{
+	volatile int count=0;
+	int getCount()
+	{
+		return count;
+	}
+	void addCount()
+	{
+		count++;
+	}
+}
+class Thread1 extends Thread
+{
+	A a;
+	
+	Thread1(A a)
+	{
+		this.a = a;
+	}
+	
+	public void run()
+	{
+		int old_num = a.getCount(); //0
+		System.out.println(Thread.currentThread().getName()+": "+old_num);
+		a.addCount();
+		int new_num = a.getCount();
+		System.out.println(Thread.currentThread().getName()+": "+new_num);
+		
+	}
+}
+public class Test{
+
+	public static void main(String[] args) 
+	{ 	
+		A a = new A();
+		Thread1 t1 = new Thread1(a);
+		Thread1 t2 = new Thread1(a);
+		
+		t1.start();
+		t2.start();
+		
+	}
+}

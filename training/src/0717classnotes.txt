@@ -1,0 +1,143 @@
+=============================17-07-2020=====================================
+Webportal is a collection of Websites.
+Website is collection of web pages.
+Web pages are formatted document which store in web server.
+WebServer provides webservice to other networks,computers or servers.
+
+
+
+HTML
+-----
+-> Hypertext Markup Language.
+-> Hypertext: it is text which contains links to other text.
+-> Markup: It describe how hypertext works by using tags.
+	-> Every tags has different functionality.
+	Example:
+		<h1>
+		<p>
+		<pre>
+		<a>
+---------------------------------------
+Tags:
+	tag is command then web browers interprets it.
+	Example:
+		<h1>
+		<p>
+		<pre>
+		<a>
+		
+Element: A complete tag, having opening and closing
+	Example:
+		<h1>this is an Example</h1>
+		<p>this is a paragraph</p>
+		
+Attribute:
+		Used to modify the value of HTML element.
+		We can add multiple attributes.
+	Example:
+		<p align="center"  >this is a paragraph</p>
+
+-------------------------------------------
+Types of tags:
+	1. Paired Tags
+		<h1>this is an Example</h1>
+		<p>this is a paragraph</p>
+		
+	2. Non-Paired Tags
+		<br/>
+		<img/>
+		<hr/>
+--------------------------------------------
+<body></body>
+-> All the things that needs to be display.
+
+<head></head>
+-> All the things that needs to be loaded prior to display.
+
+-----------------------------------------------------
+Formatting Tags : Heading
+Example: index.html
+
+<html>
+	<head>
+		<title>My first HTML Program</title>
+	</head>
+	
+	<body>
+		<h1>My first HTML Program</h1>
+		<h2>My first HTML Program</h2>
+		<h3>My first HTML Program</h3>
+		<h4>My first HTML Program</h4>
+		<h5>My first HTML Program</h5>
+		<h6>My first HTML Program</h6>
+	</body>
+
+</html>
+--------------------------------------------------
+Assignment1: Print your name to the screen with every letter being a different heading size.
+--------------------------------------------------
+Formatting Tags : Paragraph
+------------------------------
+<p></p>
+Attributes: align , values= left, right,center , justify
+
+Example:
+<html>
+	<head>
+		<title>My first HTML Program</title>
+	</head>
+	
+	<body>
+		<h1>My first HTML Program</h1>
+		<h2>My first HTML Program</h2>
+		<h3>My first HTML Program</h3>
+		<h4>My first HTML Program</h4>
+		<h5>My first HTML Program</h5>
+		<h6>My first HTML Program</h6>
+		
+		<p align="center">India, officially the Republic of India </p>
+		
+		<p align="right">India, officially the Republic of India .</p>
+	</body>
+
+</html>
+-----------------------------------
+Formatting Tags : Preformatted
+------------------------------
+<pre></pre>
+
+Example:
+<html>
+	<head>
+		<title>My first HTML Program</title>
+	</head>
+	
+	<body>
+		<h1 align="center">My first HTML Program</h1>
+		<h2>My first HTML Program</h2>
+		<h3>My first HTML Program</h3>
+		<h4>My first HTML Program</h4>
+		<h5>My first HTML Program</h5>
+		<h6>My first HTML Program</h6>
+		
+		<p align="center">India, officially the Republic of India </p>
+		
+		<p align="right">India, officially the Republic of India .</p>
+		
+		<pre>
+		import java.util.Scanner;
+class Test
+{
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		int testcases = Integer.parseInt(sc.nextLine()); //testcases=4
+		while(testcases>0)
+	}
+}
+		</pre>
+		
+		
+	</body>
+
+</html>

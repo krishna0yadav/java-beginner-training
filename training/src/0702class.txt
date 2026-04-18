@@ -1,0 +1,360 @@
+Comparable vs Comparator [imp]
+------------------------------
+-> It is used to sort object data.
+
+
+Comparable inteface
+-> it implements by String and all Wrapper class.[by default]
+-> in other language,It implements by predefined classes.
+-> Data must be homogeneous.
+-> Data must implements by Comparable inteface.
+-> Mixing business logic and sorting logics.
+-> Only one property sorting is allowed.
+-> Comparable belongs to java.lang package.
+-> we use method Collections.sort(Object)
+Case1:
+-> Example:
+	Collections.sort() is used to sort collection.
+	it internally uses int compareTo() method.
+
+-> How compareTo() method works
+	
+v1			v2				result
+-----------------------------------
+"Ajay"	   "Ajay"			 0			no change
+"Ajay"	   "Vijay"          -ve         no change
+"Vijay"    "Ajay"           +ve         change    
+
+--------------------------------------------------------
+Case2:
+Hetrogeneous Data
+Example:
+"mark" and 10
+
+-> Comparison of two different object is not possible.
+-> if compare by compreTo() , we will get ClassCastException.
+
+Example:
+package class0207;
+
+import java.util.*;
+
+public class Demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+/*Case1:
+		ArrayList<String> a = new ArrayList<>();
+		a.add("Vijay");
+		a.add("Ajay");
+		Collections.sort(a); // it internally uses compareTo() method
+		System.out.println(a);
+		*/
+		//case2:
+		ArrayList b = new ArrayList();
+		b.add("Vijay");
+		b.add(10);
+		Collections.sort(b); // it internally uses compareTo() method
+		System.out.println(b);
+		
+	}
+
+}
+
+Example:2
+Sorting Employee class data.
+Method-1
+package class0207;
+
+public class Employee implements Comparable {
+
+	int eid;
+	String ename;
+	
+	public Employee(int eid, String ename) {
+		super();
+		this.eid = eid;
+		this.ename = ename;
+	}
+
+	@Override
+	public int compareTo(Object arg0) {
+		Employee e = (Employee)arg0;
+		if(eid==e.eid)
+			return 0;
+		else if(eid>e.eid)
+			return 1;
+		else
+			return -1;
+	}
+	
+}
+
+package class0207;
+
+import java.util.*;
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		ArrayList<Employee> al = new ArrayList<>();
+		
+		al.add(new Employee(100,"ABB"));
+		al.add(new Employee(105,"ABC"));
+		al.add(new Employee(104,"DBB"));
+		al.add(new Employee(102,"ACB"));
+		al.add(new Employee(101,"AAB"));
+		
+		Collections.sort(al);
+		
+		for(Employee e:al)
+		{
+			System.out.println(e.eid+" "+e.ename);
+		}
+	}
+
+}
+
+
+Method-2
+package class0207;
+
+public class Employee implements Comparable<Employee> {
+
+	int eid;
+	String ename;
+	
+	public Employee(int eid, String ename) {
+		super();
+		this.eid = eid;
+		this.ename = ename;
+	}
+
+
+	@Override
+	public int compareTo(Employee o) {
+		return ename.compareTo(o.ename);
+	}
+	
+}
+package class0207;
+
+import java.util.*;
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		ArrayList<Employee> al = new ArrayList<>();
+		
+		al.add(new Employee(100,"ABB"));
+		al.add(new Employee(105,"ABC"));
+		al.add(new Employee(104,"DBB"));
+		al.add(new Employee(102,"ACB"));
+		al.add(new Employee(101,"AAB"));
+		
+		Collections.sort(al);
+		
+		for(Employee e:al)
+		{
+			System.out.println(e.eid+" "+e.ename);
+		}
+	}
+
+}
+
+Comparator Interface
+----------------------
+-> 	We can seperate business logics and sorting logics in different classes.
+-> 	Multiple properties sotring is allowed.
+-> 	it belongs to java.util package.
+->  We can use Collections.sort(Object,Object);
+-> 	Predefined classes are not implementing Comparator
+->  Comparator only for userdefined classes.
+
+Example:
+package class0207;
+
+public class Employee  {
+
+	int eid;
+	String ename;
+	
+	public Employee(int eid, String ename) {
+		super();
+		this.eid = eid;
+		this.ename = ename;
+	}
+
+	//don't write sorting logics here 
+	
+}
+package class0207;
+
+import java.util.Comparator;
+
+public class EidComp implements Comparator{
+
+	@Override
+	public int compare(Object arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		Employee e1 = (Employee) arg0;
+		Employee e2 = (Employee) arg1;
+		
+		if(e1.eid==e2.eid)
+			return 0;
+		else if(e1.eid>e2.eid)
+			return 1;
+		else
+			return -1;
+	}
+
+}
+package class0207;
+
+import java.util.Comparator;
+
+public class EnameComp implements Comparator<Employee>{
+
+	@Override
+	public int compare(Employee o1, Employee o2) {
+		
+		return o1.ename.compareTo(o2.ename);
+	}
+
+}
+package class0207;
+
+import java.util.*;
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		ArrayList<Employee> al = new ArrayList<>();
+		
+		al.add(new Employee(100,"ABB"));
+		al.add(new Employee(105,"ABC"));
+		al.add(new Employee(104,"DBB"));
+		al.add(new Employee(102,"ACB"));
+		al.add(new Employee(101,"AAB"));
+		
+		//Collections.sort(al,new EidComp());
+		Collections.sort(al,new EnameComp());
+		
+		for(Employee e:al)
+		{
+			System.out.println(e.eid+" "+e.ename);
+		}
+	}
+
+}
+
+========================================================================
+Multithreading
+---------------
+-> It is a process of executing multiple thread simultaneosly.
+-> it used in games, animations, server programming etc.
+
+Thread
+------
+-> It is a light weigth sub process.
+-> It is a smallest unit of processing.
+-> It is a seperate path of execution.
+-> Threads are independent.
+-> if there occurs exception in one thread, it doesn't affect other threads.
+-> It shares common memory area.
+-> At a time one thread is executed only.
+
+Thread Life Cycle
+------------------
+New
+Running
+Suspended
+Blocked
+Terminated
+
+Save in image
+
+Thread Creation
+---------------
+there are two ways to create thread
+
+1. By extending Thread class.
+2. By implementing Runable interface.
+
+By extending Thread class
+--------------------------
+import java.util.*;
+
+public class Test extends Thread {
+	
+	public void run()
+	{
+		System.out.println("Thread is running");
+	}
+	public static void main(String[] args)
+	{ 	
+		Test t1 = new Test();
+		t1.start();
+	}
+}
+
+By implementing Runnable interface.
+import java.util.*;
+
+public class Test implements Runnable {
+	
+	public void run()
+	{
+		System.out.println("Thread is running");
+	}
+	public static void main(String[] args)
+	{ 	
+		Test t1 = new Test();
+		Thread th = new Thread(t1);
+		
+		th.start();
+	}
+}	
+		
+When call start method
+import java.util.*;
+
+public class Test extends Thread {
+	
+	public void run()
+	{
+		System.out.println("Thread is running");
+	}
+	public static void main(String[] args)
+	{ 	
+		Test t1 = new Test();
+		Test t2 = new Test();
+		t1.start();
+		t2.start();
+	}
+}		
+		
+		
+When Directly call run()
+import java.util.*;
+
+public class Test extends Thread {
+	
+	public void run()
+	{
+		System.out.println("Thread is running");
+	}
+	public static void main(String[] args)
+	{ 	
+		Test t1 = new Test();
+		Test t2 = new Test();
+		t1.run();
+		t2.run();
+	}
+}

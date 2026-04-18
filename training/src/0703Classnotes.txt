@@ -1,0 +1,306 @@
+---------------------------------------------------------
+03-July-2020
+Naming Thread
+--------------
+-> Thread class provides methods to change and get name of a thread.
+-> by default, each thread has a name, that is thread-0, thread-1 and so on.
+methods:
+String getName()
+void setName()
+
+Example:
+import java.util.*;
+
+public class Test extends Thread {
+	
+	public static void main(String[] args)
+	{ 	
+		Test t1 = new Test();
+		Test t2 = new Test();
+		
+		System.out.println("t1 Name:"+t1.getName());
+		System.out.println("t2 Name:"+t2.getName());
+		
+	}
+}
+
+Example:
+import java.util.*;
+
+public class Test extends Thread {
+	
+	public static void main(String[] args)
+	{ 	
+		Test t1 = new Test();
+		Test t2 = new Test();
+		
+		System.out.println("t1 Name:"+t1.getName());
+		System.out.println("t2 Name:"+t2.getName());
+		
+		t1.setName("ABC");
+		System.out.println("t1 Name:"+t1.getName());
+		System.out.println("t2 Name:"+t2.getName());
+	}
+}
+
+Assignment:1
+create two threads and assign names "Abhishek" and "Amitabh" to two threads. Display both of them.
+
+Done by Students
+==========================================================================
+Thread currentThread() method
+Example:
+import java.util.*;
+
+public class Test extends Thread {
+	
+	public void run()
+	{
+		for(int i=1;i<=5;i++)
+		{
+			System.out.println(Thread.currentThread().getName()+" :"+i);
+		}
+	}
+	public static void main(String[] args)
+	{ 	
+		Test t1 = new Test();
+		Test t2 = new Test();
+		
+		t1.start();
+		t2.start();
+	}
+}
+
+Assignment:2
+store colours in the form of an array
+ex: String colours[]={"white","blue","black","green","red","yellow"};
+display all colours repeatedly by generating colour index from Random class. 
+If the random colour index matches to red stop display.
+Note: perform this task by implementing Runnable interface
+
+Program:
+import java.util.*;
+
+public class Test implements Runnable {
+	
+	public void run()
+	{
+		String colours[]={"white","blue","black","green","red","yellow"};
+		Random r = new Random();
+		int i = r.nextInt(6);
+		
+		while(!colours[i].equals("red"))
+		{
+			System.out.println(colours[i]);
+			i = r.nextInt(6);
+		}
+		
+	}
+	public static void main(String[] args)
+	{ 	
+		Test t1 = new Test();
+		Thread th1 = new Thread(t1);
+		th1.start();
+	}
+}
+-------------------------------------------
+method
+static void sleep() throws InterruptedException
+-> it sleeps a thread for the specific time.(in milli seconds)
+Example:
+import java.util.*;
+
+public class Test extends Thread {
+	public void run()
+	{
+		for(int i=1;i<=5;i++){
+			try
+			{
+				Thread.sleep(1000);
+				System.out.println(Thread.currentThread().getName());
+			}
+			catch(Exception e)
+			{
+				System.out.println(e);
+			}
+		}
+	}
+	public static void main(String[] args) 
+	{ 	
+		Test t1 = new Test();
+		Test t2 = new Test();
+		
+		t1.start();
+		t2.start();
+	}
+}
+Assignment3:
+Create a thread which prints 1 to 10, after printing 5, there should be a delay of 5000ms before printing 6.
+Program:
+import java.util.*;
+
+public class Test extends Thread {
+	
+	public void run()
+	{
+		for(int i=1;i<=10;i++){
+			try
+			{
+				if(i==6)
+				{
+					Thread.sleep(5000);
+				}
+			}
+			catch(Exception e)
+			{
+				System.out.println(e);
+			}
+			System.out.println(i);
+		}
+	}
+	public static void main(String[] args) 
+	{ 	
+		Test t1 = new Test();
+		Test t2 = new Test();
+		
+		t1.start();
+	}
+}
+=====================================================================
+void join() -> it is used when you want one thread to wait for completion of another.
+Example:
+import java.util.*;
+
+public class Test extends Thread {
+	
+	public void run()
+	{
+		for(int i=1;i<=5;i++){
+			try
+			{
+				Thread.sleep(1000);
+			}
+			catch(Exception e)
+			{
+				System.out.println(e);
+			}
+			System.out.println(Thread.currentThread().getName());
+		}
+	}
+	public static void main(String[] args) 
+	{ 	
+		Test t1 = new Test();
+		Test t2 = new Test();
+		
+		t1.start();
+		try{
+			t1.join(1000);// it completed
+		}
+		catch(Exception e)
+		{
+		}
+		
+		t2.start();
+	}
+}
+
+Example:
+import java.util.*;
+
+public class Test extends Thread {
+	
+	public void run()
+	{
+		for(int i=1;i<=5;i++){
+			try
+			{
+				Thread.sleep(1000);
+			}
+			catch(Exception e)
+			{
+				System.out.println(e);
+			}
+			System.out.println(Thread.currentThread().getName());
+		}
+	}
+	public static void main(String[] args) 
+	{ 	
+		Test t1 = new Test();
+		Test t2 = new Test();
+		
+		t1.start();
+		try{
+			t1.join();
+		}
+		catch(Exception e)
+		{
+		}
+		
+		t2.start();
+	}
+}
+
+Assignment:4
+create two threads, one thread to display all even numbers b/w 1 to 20, another to display odd number.
+Note: Display all even numbers followed by odd numbers using join() method
+Program:
+import java.util.*;
+
+public class Test extends Thread {
+	
+	public void run()
+	{
+		for(int i=1;i<=20;i++){
+			
+			if(Thread.currentThread().getName().equals("Thread-0"))
+			{
+				if(i%2==0)
+				{
+					System.out.println(i);
+				}
+			}
+			else if(Thread.currentThread().getName().equals("Thread-1"))
+			{
+				if(i%2!=0)
+				{
+					System.out.println(i);
+				}
+			}
+		}
+	}
+	public static void main(String[] args) 
+	{ 	
+		Test t1 = new Test();
+		Test t2 = new Test();
+		
+		t1.start();
+		try{
+			t1.join();
+		}
+		catch(Exception e)
+		{
+		}
+		
+		t2.start();
+	}
+}
+----------------------------------------------
+int getPriority() -> it is used to check priority of thread.
+void setPriority()-> it is used to set priority to thread.
+
+Range of thread Priority : 1 to 10 , default priority is 5
+
+Set:
+	there are 3 constant properites :
+	1. public static int MIN_PRIORITY	=	1
+	2. MAX_PRIORITY = 	10
+	3. NORM_PRIORITY =  5
+
+
+Taday's Task
+---------------
+long getId()
+boolean isAlive()
+void suspend()
+void resume()
+void stop()

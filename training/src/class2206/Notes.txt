@@ -1,0 +1,97 @@
+
+Java IO
+---------
+-> It is an API.
+-> It is used to process input and generate output.
+-> java.io package contains JavaIO classes.
+
+Stream
+-------
+	-> Stream is a sequence or flow of data.
+	-> There are 2 kinds of Streams, Input Stream and Output Stream.
+	-> There are 2 ways of streaming:
+		1. Byte Stream: Data flow in the form of character data as well as binary data. 8 bit(1 byte).
+		2. Character Stream: data flow in the form of character data. 16 bit(2 bytes).
+----------------------------------------------------------------------
+File class
+----------
+-> It is used to perform various operations on files and folders.
+-> It is a class of java.io package
+
+============================
+ByteStream
+---------------------
+InputStream
+	FileInputStream
+	FilterInputStream
+		BufferedInputStream
+		DataInputStream
+	ObjectInputStream
+
+OutputStream
+	FileOutputStream
+	FilterOutputStream
+		BufferedOutputStream
+		DataOutputStream
+	ObjectOutputStream
+	
+-------------------------------
+FileOutputStream fos=new FileOutputStream(new File("directory"));
+fos.write(byte);// for character(ASCII value)
+fos.write(char);// for character
+fos.write(byte[]);// for multiple characters.
+fos.write(byte[],int|start_index|,int|length|);// for multiple characters from byte[].
+**Note: for converting string s to byte[]: s.getBytes()
+
+------------------------------------------------------------
+FileInputStream class:
+	int read()
+	int read(byte[])
+	int read(byte[],int,int)
+	
+FileInputStream fis=new FileInputStream("directory");
+int a = fis.read();//returns -1 if char does not exist
+//returns ASCII value of first character and moves the cursor forward.
+
+---------------------------------------------------------------
+BufferedOutputStream class
+---------------------------
+-> It is used for buffering an output stream.
+-> It internally uses buffer to store data.
+-> Improve efficiency.
+-> Min. buffer size: 1MB
+
+methods:
+	write()
+	write(byte[])
+	flush()
+
+BufferedOutputStream bos=new BufferedOutputStream(new FileOutputStream("directory"));
+bos.write(byte[]);
+bos.flush();
+bos.close();
+
+------------------------------------------------------------
+BufferedInputStream
+----------------------
+
+
+BufferedInputStream bis=new BufferedInputStream(new FileInputStream("directory"));
+int a=bis.read();
+bis.close();
+
+==============================================================
+File Writer Class
+--------------------------------
+it is used to write character oriented data to a file.
+it extends OutputStreamWriter class (it is used to convert character stream to byte stream)
+
+
+FileWriter fw=new FileWriter("directory");
+fw.write("this is a test string");
+fw.write('C');
+fw.close();
+
+================================
+FileReader class
+--------------------

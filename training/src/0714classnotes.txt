@@ -1,0 +1,142 @@
+=============================14-July-2020======================================
+PreparedStatement:
+-> It is a sub interface of Statement interface.
+-> It is used to execute dynamic/ paramerterized sql queries.
+-> It is also used to executing a precompiled sql queries.
+
+Example:
+package jdatabase;
+
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import com.database.DbConnection;
+
+
+public class Test1 {
+
+	public static void main(String[] args)
+	{
+		//"INSERT INTO person VALUES("+id+",'"+name')""
+		try
+		{
+			Connection con = DbConnection.takeConnection(); // returns connection form DbConnection
+			
+			String query = "INSERT INTO person VALUES(?,?,?)";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1 ,202 );
+			ps.setString(2, "VIJAY");
+			ps.setInt(3, 25);
+			
+			ps.executeUpdate();
+			
+			System.out.print("Inserted");
+			con.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	
+	}
+}
+
+Example:
+package jdatabase;
+
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import com.database.DbConnection;
+
+
+public class Test1 {
+
+	public static void main(String[] args)
+	{
+		//"INSERT INTO person VALUES("+id+",'"+name')""
+		try
+		{
+			Connection con = DbConnection.takeConnection(); // returns connection form DbConnection
+			
+			String query = "SELECT * FROM person WHERE age BETWEEN ? and ?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1 ,20 );
+			ps.setInt(2, 25);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next())
+			{
+				System.out.println(rs.getInt(1)+" "+rs.getString("name")+" "+rs.getInt(3));
+			}
+			
+			//System.out.print("Inserted");
+			con.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	
+	}
+}
+
+Example3: delete record of a person whose id is equals to given id.
+
+Example4: modify person name with the help of identification number.
+
+Example5: insert record of person until user press 0.
+
+------------------------------------
+CallableStatement
+-> It is a sub interface of PreparedStatement
+-> It is used to execute stored procedure.
+
+Stored Procedure:
+-> it a function which is created in database.
+-> It is a group of PL/SQL statements that can be invoked by name.
+-> database Admin (DBA) is responsible to create SP.
+
+=======================================================
+Extra:
+
+int m1(int a,int b)
+{
+	int c = a + b;
+	return c;
+}
+
+int m1(int c)
+{
+	c = c + c;
+	return c;
+}
+
+=======================================================
+-> Types of Parameters in SP
+	1. IN   c := a+b    , where a and b are IN parameter
+	2. OUT  c := a+b    , where c is OUT parameter
+	3. INOUT c := c+c   , where c is IN and OUT parameter.
+
+Example:
+SQL> CREATE OR REPLACE PROCEDURE sum1(a IN NUMBER,b IN NUMBER,c OUT NUMBER) as
+  2  begin
+  3  c := a+b;
+  4  end;
+  5  /
+
+Procedure created.
+
+SQL> VARIABLE res NUMBER;
+SQL> Execute sum1(10,20,:res);
+
+PL/SQL procedure successfully completed.
+
+SQL> print res;
+
+       RES
+----------
+        30

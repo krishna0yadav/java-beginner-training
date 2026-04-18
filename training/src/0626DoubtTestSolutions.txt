@@ -1,0 +1,128 @@
+============================================
+Encryption:
+static String encryption(String s) {
+
+        String res = "";
+       double sqt =  Math.sqrt(s.length());
+        int row = (int)Math.floor(sqt);
+        int col = (int)Math.ceil(sqt);
+        
+        if(row*col<s.length())
+        {
+            row = col;
+        }
+        
+        for(int i=0;i<col;i++)
+        {
+           for(int j=i;j<s.length();j=j+col)
+           {
+               res = res + s.charAt(j);
+           }
+            res = res+" ";
+        }
+        return res;
+        
+    }
+
+String66
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine(); // XXBBBbbxx
+        
+        int count = 0;
+        int temp = 1;
+        for(int i=0;i<s.length()-1;i++)
+        {
+            if(s.charAt(i)==s.charAt(i+1))
+            {
+               temp++;
+            }
+            else
+            {
+                temp=1;
+            }
+            if(temp>count)
+            {
+                count = temp;
+            }
+        }
+        System.out.println(count);
+    }
+}
+
+Pattern
+Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int k;
+        if(a>0 && a<9)
+        {
+            for(int i=1;i<=a;i++)
+            {
+              k=1;
+                for(int j=0;j<i;j++)
+                {
+                    System.out.print(i);
+                    if(k<i)
+                    {
+                        System.out.print("*");
+                        k++;
+                    }   
+                }
+                System.out.println();
+            }
+            for(int i=a;i>0;i--)
+            {
+              k=1;
+                for(int j=0;j<i;j++)
+                {
+                    System.out.print(i);
+                    if(k<i)
+                    {
+                        System.out.print("*");
+                        k++;
+                    }   
+                }
+                System.out.println();
+            }
+        }
+        else
+        {
+            System.out.println("SORRY");
+        }
+
+Time Conversion
+static String timeConversion(String s) {
+        
+        String last = s.substring(2,s.length()-2); //:05:45
+        String first = s.substring(0,2);//12
+        String res = "";
+        int a = Integer.parseInt(first);//12
+        
+        if(s.substring(s.length()-2).equals("PM"))
+        {
+            if(a!=12)
+            {
+                a = a+12;
+            }
+            res = a+last;
+        }
+        else
+        {
+            if(a==12)
+            {
+                res = "00"+last; //00:05:45
+            }
+            else
+            {
+                res = first+last;
+            }
+        }
+        return res;
+
+    }

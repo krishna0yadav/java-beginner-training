@@ -1,0 +1,153 @@
+====================10-July-2020==========================
+
+Steps for connecting database.
+
+Step1: Load/ register Driver class
+Step2: Create Connection
+Step3: Create Query and pass this query with Statement object [Optional]
+Step4: Get Result from Database. [Optional]
+Step5: Connection close.
+
+// 1. Load driver class
+		Class.forName("orcle.jdbc.driver.OracleDriver");
+		
+-> it loads the class into the class loader. It it is not done, we will get ClassNotFound Exception.
+
+// 2. Create Connection object
+		String path="jdbc:oracle:thin:@localhost:1521:orcl";
+		String username="system";
+		String password="Bhopal12";
+		Connection con = DriverManager.getConnection(path,username,password);
+
+Connection: 
+-> it is an interface.
+-> It is used to create session b/w java application and database.
+-> By default, connection commit the changes after executing queries.
+
+
+DriverManager:
+-> It is a class.
+-> It is found in java.sql package.
+-> It is the basic service for managing set of JDBC drivers.
+
+getConnection(): It helps in establishing connection with given database url.
+
+
+// 3. create Statement Object
+		String query = "INSERT INTO person VALUES(101,'Ayush',20)";
+		Statement stm = con.createStatement();
+		stm.executeUpdate(query);
+		
+ con.createStatement():
+ -> To create statement object that can be used to execute SQL queries.
+
+Statement:
+-> It is an interface.
+-> Used to execute queries into database.
+methods:
+	boolean execute(String query)         -> I,U,D
+	int executeUpdate(String query)       -> I,U,D
+	ResultSet executeQuery(String query)  -> S
+
+----------------------------------
+Example:
+package jdatabase;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+public class Test1 {
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		try {
+		// 1. Load driver class
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		
+		// 2. Create Connection object
+		String path="jdbc:oracle:thin:@localhost:1521:orcl";
+		String username="system";
+		String password="Bhopal12";
+		Connection con = DriverManager.getConnection(path,username,password);
+		
+		// 3. create Statement Object
+		String query = "INSERT INTO person VALUES(103,'XYZ',30)";
+		Statement stm = con.createStatement();
+		int i = stm.executeUpdate(query);
+		
+		System.out.println(i+" Row inserted");
+		
+		// 5. close connection
+		con.close();
+		
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+}
+----------------------------------
+
+ResultSet:
+-> It is an interface
+-> It maintains a cursor pointing to a row.
+-> Initially, cusrsor point to before first record.
+
+boolean next() : to move cursor to one row next from current position
+boolean previous():
+boolean first():
+boolean last():
+boolean absolute(int row):
+int getInt(int col-no):
+int getInt(String col-name):
+String getString(int col-no):
+String getString(String col-name):
+------------------------------
+Example:
+package jdatabase;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class Test1 {
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		try {
+		// 1. Load driver class
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		
+		// 2. Create Connection object
+		String path="jdbc:oracle:thin:@localhost:1521:orcl";
+		String username="system";
+		String password="Bhopal12";
+		Connection con = DriverManager.getConnection(path,username,password);
+		
+		// 3. create Statement Object
+		String query = "SELECT * FROM person";
+		Statement stm = con.createStatement();
+		// 4. Get record from database
+		ResultSet rs = stm.executeQuery(query);
+		
+		while(rs.next())
+		{
+			System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getInt("Age"));
+		}
+		
+		// 5. close connection
+		con.close();
+		
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+}
+---------------------------------------------

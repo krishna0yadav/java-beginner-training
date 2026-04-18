@@ -1,0 +1,154 @@
+============================20-July-2020===========================================
+Form Tags Elements:
+-------------------
+<input>  -> it is used to create form elements
+
+Atrributes:
+	name: specifies input name
+	id:   should be unique
+	type: type of input[text,password,radiio,checkbox,file,number,submit,reset]
+	value: content/text
+
+
+-----------
+Extra: <label>
+		<label> tag defines a label fro an <input> element.
+		Attribute:
+			for: 'for' equal to 'id' attribute of the related element to bind them together.
+group		
+id:
+name:
+class:
+-----------
+			
+Example:
+<form>
+		<label for="name">Username:</label><input id="name" type="text"/><br/>
+		<label for="pass">Password:</label><input id="pass" type="password"/>
+</form>
+
+
+--------------------
+Task:
+	Registration Form
+	
+	Name:
+	Age:
+	Gender:
+	course: [checkbox]  C C++ JAVA PYTHON
+	Address:
+	City:
+	Upload Resume:
+	
+	Submit    Reset
+----------------------
+Example:
+<html>
+	<head>
+		<title>My first HTML Program</title>
+	</head>
+	
+	<body>
+		
+		<form method="get">
+			Name: <input class="aa"  type="text" /><br/>
+			DOB: <input  type="date"/><br/>
+			Age: <input  class="aa" type="number"/><br/>
+			Gender: Male<input name="gen"type="radio" value="Male"/> Female<input name="gen" type="radio"/><br/>
+			Course: C<input name="co" type="checkbox" value="C"/>
+					C++<input name="co" type="checkbox" value="CPP"/>
+					Java<input name="co" type="checkbox" value="JAVA"/>
+					Python<input name="co" type="checkbox" value="P"/><br/>
+			Address:<textarea></textarea><br/>
+			City:<select id="">
+					<option value="Bhopal">Bhopal</option>
+					<option value="Indore">Indore</option>
+					<option>Delhi</option>
+					<option>Mumbai</option>
+					<option>Pune</option>
+				 </select><br/>
+			Upload Resume: <input  type="file"/><br/>
+			<input  type="submit" value="Save"/><input  type="reset"/><br/>
+			
+		</form>
+	</body>
+</html>
+
+
+Properties:
+------------
+hidden        User: Hidden        Server: Access
+disabled      User: Visible        Server: NOT Access
+checked
+selected
+required
+readonly      User: Visible        Server: Access
+
+--------------------------------------------------------------------
+Frameset
+---------
+-> Frameset are used to divid browser window.
+-> Frameset is always written in head part.
+-> internal tag is <frame> tag.
+Attribute:
+	rows
+	cols
+	border
+
+Example:
+<html>
+	<head>
+		<title>My first HTML Program</title>
+		<frameset cols="20%,*" border="15px">
+			<frame src="C:/javaprograms/first.html"/>
+			<frame src="C:/javaprograms/second.html"/>
+		</frameset>
+	</head>
+	
+	<body>
+		
+	</body>
+</html>
+
+Question:
+Create a page which is divided in 3 parts. 30% horizontally on top and the rest 70% bellow is split vertically in 2 parts again 30% and 70% each
+ <frameset rows="30%,70%">
+        <frame src="Test.html">
+        <frameset cols="30%,*">
+            <frame src="Test.html">
+                <frame src="Test2.html">
+        </frameset>
+ </frameset>
+
+
+-------------------------
+Division
+
+<div></div>
+
+-> It is used to create a group of html block level elements.
+
+<span></span>
+
+->It is used within inline elements.
+
+Example:
+--------
+<html>
+	<head>
+	</head>
+	
+	<body>
+		<div style="background-color:pink">
+			<h1>This is a heading element</h1>
+			<p>This is a paragraph element</p>
+		</div>
+		<div>
+			<p>This is a paragraph element</p>
+		</div>
+		<p>This is a <span style="color:red">red</span> and this is a <span style="color:green">green</span></p>
+		
+	</body>
+</html>
+
+=====================================

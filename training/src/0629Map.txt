@@ -1,0 +1,64 @@
+======================================================================
+Map Interface
+-------------
+-> Map contains values on the basis of key,ie key and value pair.
+-> Each key and value pair is known as entry.
+-> Map contains only unique keys.
+-> Map is useful , if you have to search,update,delete elements on the basis of key.
+
+Entry Inteface
+-> Entry is a sub interface of Map. ie Map.Entry
+-> syntax:
+	Map.Entry ref-object
+-> It provide methods to get key and values.
+-> Methods getKey() and getValue()
+
+-> There are two implementation class of Map interface.
+	1. HashMap
+	2. TreeMap 
+	
+HashMap
+
+Methods:
+Object put(key,value)
+void putAll(Map map)
+Object remove(key)
+Object get(key)
+boolean	containsKey(key)
+Set keySet()
+Set entrySet()
+boolean containsKey(key)
+boolean containsValue(value)
+
+
+Example:
+import java.util.*;
+
+public class Test {
+	public static void main(String[] args)
+	{ 
+		HashMap<Integer,String> a1 = new HashMap<>();
+		a1.put(101,"AB");
+		a1.put(102,"AA");
+		a1.put(104,"BB");
+		a1.put(103,"BA");
+		
+		System.out.println(a1);
+		//a1.remove(101);
+		//a1.remove(101,"AB");
+		//a1.remove("AB"); // NOT WORKING
+		
+		System.out.println(a1);
+		
+		for(int b:a1.keySet())
+		{
+			System.out.println(b);
+		}
+		
+		for(Map.Entry c:a1.entrySet())
+		{
+			System.out.println(c.getKey()+" "+c.getValue());
+		}
+		
+	}		
+}

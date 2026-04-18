@@ -1,0 +1,70 @@
+package harentortoise;
+
+public class Hare extends Thread {
+
+	public void run()// running
+	{
+		for(int i=0;i<=100;i++)
+		{
+			System.out.println(Thread.currentThread().getName()+": "+i);
+			if(i==60)
+			{
+				try {Thread.sleep(1000);}
+				catch(Exception e) {}
+			}
+		}
+	}
+}
+package harentortoise;
+
+public class Tortoise extends Thread{
+
+	public void run() // running
+	{
+		for(int i=0;i<=100;i++)
+		{
+			System.out.println(Thread.currentThread().getName()+": "+i);
+		}
+	}
+	// completed/ terminate -> tortoise.isAlive(): false
+}
+package harentortoise;
+
+public class Test extends Thread{
+
+	static Hare h;
+	static Tortoise t;
+	public void run()
+	{
+		while(true)
+		{
+			if(!t.isAlive() && h.isAlive())
+			{
+				h.stop();
+				System.out.println("Tortoise wins the race");
+				break;
+			}
+			if(!h.isAlive() && t.isAlive())
+			{
+				t.stop();
+				System.out.println("Hare wins the race");
+				break;
+			}
+		}
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Test test = new Test();
+		h = new Hare();
+		h.setName("Hare");
+		h.setPriority(Thread.MAX_PRIORITY);//10
+		
+		t = new Tortoise();
+		t.setName("Tortoise");
+		
+		h.start();
+		t.start();
+		test.start();
+	}
+
+}

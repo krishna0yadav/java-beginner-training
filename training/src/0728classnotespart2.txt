@@ -1,0 +1,85 @@
+======================================28-July-2020======================
+Bootstrap Button
+-----------------
+
+	Styles
+		classes:
+		btn
+		btn-default
+		btn-success
+		btn-primary
+		btn-info
+		btn-warning
+		btn-danger
+		btn-link
+		
+	Size
+		classes:
+			btn-block
+			btn-lg
+			btn-md
+			btn-sm
+			btn-xs
+Example:
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="E:/Software/bootstrap-3.4.1-dist/css/bootstrap.min.css" />
+</head>
+<body>
+	<button class="btn btn-primary btn-xs" >Submit</button>
+</body>
+</html>	
+
+-------------
+Bootstrap Form
+Example:
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="E:/Software/bootstrap-3.4.1-dist/css/bootstrap.min.css" />
+</head>
+<body>
+	<form>
+		<input type="text" class="form-control" placeholder="Enter First Name"/>
+		<input type="text" class="form-control" placeholder="Enter Last Name"/>
+		<input type="submit" class="btn btn-info"/>
+	</form>
+</body>
+</html>		
+============================================
+Bootstrap Grid System
+----------------------
+-> It is an easy way to create web page layout.
+-> Upto 12 columns across the page.
+
+Grid classes:
+	lg	:	for large desktop
+	md  :   for desktop/laptop
+	sm  :   for tablets
+	xs  :   for mobile phone
+
+How to create grid:
+1. create "container"
+2. create "row"
+3. create "columns" inside the row(step-2).
+
+Example:
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="E:/Software/bootstrap-3.4.1-dist/css/bootstrap.min.css" />
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-7">
+			
+			</div>
+			<div class="col-sm-1">
+				
+			</div>
+			<div class="col-sm-4">
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html>

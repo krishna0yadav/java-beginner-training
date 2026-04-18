@@ -1,0 +1,15 @@
+------------------------------
+String toBinaryString()
+String toHexString()
+String toOctalString()
+===============================
+Cloneable Interface
+-------------------------------
+-> It is used to create copy of an object.
+-> clone() method of Object class is used to clone an object.
+-> It must be implemented by class whose object clone we want to create.
+-> If we donot implement cloneable interface then clone method generate CloneNotSupportedException.
+-> save the extra processing task for creating the exact copy of object.
+-> Marker Interface(empty interface).
+
+Learn shallow copy and deep copy.

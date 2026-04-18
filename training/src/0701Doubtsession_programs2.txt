@@ -1,0 +1,218 @@
+Question1
+method1
+import java.util.*;
+
+public class Test {
+	
+	public static void main(String[] args)
+	{ 
+		String res = "";
+		int i1=3521,i2=2452,i3=1352;
+		
+		while(i1!=0 && i2!=0 && i3!=0)
+		{
+			int a=i1%10;//1
+			int b=i2%10;//2
+			int c=i3%10;//2
+			int max,min;
+			if(a>b)
+				if(a>c)
+					max=a;
+				else
+					max=c;
+			else
+				if(b>c)
+					max=b;
+				else
+					max=c;
+			
+			if(a<b)
+				if(a<c)
+					min=a;
+				else
+					min=c;
+			else
+				if(b<c)
+					min=b;
+				else
+					min=c;
+				
+			res = (max-min)+res;
+			i1=i1/10;
+			i2=i2/10;
+			i3=i3/10;
+		}
+		System.out.println(res);
+	}
+
+}
+
+
+Question1
+method2
+import java.util.*;
+
+public class Test {
+	
+	public static void main(String[] args)
+	{ 
+		String res = "";
+		int i1=3521,i2=2452,i3=1352;
+		
+		while(i1!=0 && i2!=0 && i3!=0)
+		{
+			int a=i1%10;//1
+			int b=i2%10;//2
+			int c=i3%10;//2
+			int max,min;
+			
+			max = Math.max(Math.max(a,b),c);
+			min = Math.min(Math.min(a,b),c);
+			
+			res = (max-min)+res;
+			i1=i1/10;
+			i2=i2/10;
+			i3=i3/10;
+		}
+		System.out.println(res);
+	}
+
+}
+
+
+eXAMPLE:1
+import java.util.*;
+
+public class Test {
+	
+	public static void main(String[] args)
+	{ 
+		ArrayList<ArrayList<String>> a1 = new ArrayList<>();
+		Scanner sc = new Scanner(System.in);
+		
+		ArrayList<String> b = new ArrayList<>();
+		
+		for(int i=1;i<=5;i++)
+		{
+			System.out.print("Enter Alphabet: ");
+			String s = sc.nextLine();
+			b.add(s);	
+		}
+		a1.add(b);
+		
+		System.out.println(a1);
+		
+	}
+}
+Example:2
+import java.util.*;
+
+public class Test {
+	
+	public static void main(String[] args)
+	{ 
+		HashMap<Integer,String> hm = new HashMap<>();
+		hm.put(1,"ABC");
+		hm.put(2,"AB");
+		hm.put(3,"BC");
+		hm.put(4,"AC");
+		hm.put(5,"AD");
+		
+		System.out.println(hm);
+		
+		if(hm.containsValue("DD"))
+		{
+			System.out.println("Yes");
+		}
+		else
+		{
+			System.out.println("No");
+		}
+	}
+}
+
+Example:3
+import java.util.*;
+
+public class Test {
+	
+	public static void main(String[] args)
+	{ 
+		HashMap<Integer,String> hm = new HashMap<>();
+		hm.put(1,"ABC");
+		hm.put(2,"AB");
+		hm.put(3,"BC");
+		hm.put(4,"AC");
+		hm.put(5,"AD");
+		
+		System.out.println(hm);
+		// Set keySet()
+		
+		Set s = hm.keySet();
+		System.out.println(s);
+		
+		
+	}
+}
+
+Example:4
+import java.util.*;
+
+public class Test {
+	
+	public static void main(String[] args)
+	{ 
+		int a = 2564;
+		int max = 0;
+		while(a!=0)
+		{
+			int d = a%10;
+			if(max<d)
+			{
+				max = d;
+			}
+			a=a/10;
+		}
+		System.out.println(max);
+		
+	}
+}
+
+
+
+Example:5
+import java.util.*;
+
+public class Test {
+	
+	public static void main(String[] args)
+	{ 
+		HashMap<Integer,ArrayList<String>> hm = new HashMap<>();
+		
+		ArrayList<String> a = new ArrayList<>();
+			a.add("A");
+			a.add("B");
+			a.add("C");
+			a.add("D");
+			a.add("E");
+		
+		hm.put(1,a.get(0)); // integer,String
+		hm.put(2,a); // integer,AL
+		hm.put(3,a);
+		hm.put(4,a);
+		hm.put(5,a);
+		
+		System.out.println(hm);
+		
+	}
+}
+
+
+
+
+
+
+
+
+
+

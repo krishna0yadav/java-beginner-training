@@ -1,0 +1,42 @@
+
+JUnit Annotations
+-----------
+-> It is a tag that represents the metadata(some additional info.) which can be used by java compiler and JVM.
+
+@Test        -> It tells JUnit that the public void method can be run as a test case.
+
+@Before      -> It specifies that method will be called before each @Test.
+@After       -> It specifies that method will be called after each @Test.
+
+@BeforeClass -> public static void method, it will called only once, before starting all test cases.
+@AfterClass  -> public static void method, it will called only once, after finishing all the test cases.
+
+@Ignore      -> It is used to ignore that test and that test willnot be executed.
+
+----------------------------------------------------------------------
+
+
+Assert Class methods
+---------------------
+1. boolean assertEquals(expected,actual)
+	Check that two primitives/objects are equals
+
+2. void assertTrue(boolean condition)
+	Check whether condition is true 
+
+3. void assertFalse(boolean condition)
+
+4. void assertNull(Object object)
+	check whether object is null.
+
+5. void assertNotNull(Object object)
+	check whether object is not null.
+	
+6. void assertSame(object1,object2)
+	if two object refrences point to the same object.
+	
+	
+7. void assertNotSame(object1,object2)
+
+8. void assertArrayEquals(expected array, actual array)
+   check whether two array are equal to each other.

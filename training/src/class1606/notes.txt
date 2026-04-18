@@ -1,0 +1,24 @@
+Abstraction
+-------------
+
+There are 2 ways to achieve abstraction
+1. Abstract class (0% - 100%)
+	
+
+2. Interface
+	-> Achieve abstraction
+	-> functionality of multiple inheritance
+	-> Syntax:
+		interface interface-name{
+			//constant-variables
+			//abstract method
+		}
+		
+=========================
+PBL java fundamentals assignments
+Upload: wordfile(Enrollment_name_Assignment1)
+17-06-2020 evening 5:00 PM
+
+-------------------------------------------------
+Day-5 logic building
+----------------------------
